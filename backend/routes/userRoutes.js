@@ -1,7 +1,17 @@
 import express from "express";
 const router = express.Router();
-import { authorizeUser } from "../controllers/userController.js";
+import {
+  authorizeUser,
+  registerUser,
+  logoutUser,
+  getUserProfile,
+  updateUserProfile,
+} from "../controllers/userController.js";
 
-router.post("/authorize", authorizeUser); // /api/users connects to the Routes file
+// Connect routes with functions/controllers
+router.post("/", registerUser); // /api/users integrated
+router.post("/authorize", authorizeUser);
+router.post("/logout", logoutUser);
+router.route("/profile").get(getUserProfile).put(updateUserProfile);
 
 export default router;
