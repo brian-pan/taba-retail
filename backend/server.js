@@ -2,15 +2,17 @@
 import express from "express"; // "type": "module" allows import syntax
 import dotenv from "dotenv";
 dotenv.config();
+import connectDB from "./config/database.js";
 import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 const port = process.env.PORT || 5000;
 import userRoutes from "./routes/userRoutes.js";
+
+connectDB();
 
 const app = express();
 
 app.use("/api/users", userRoutes);
 
-// Routes
 app.get("/", (req, res) => res.send("Server is Ready"));
 
 app.use(notFound);
