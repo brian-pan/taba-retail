@@ -1,7 +1,14 @@
+import Header from "./components/Header";
+import HomeScreen from "./screens/HomeScreen";
+import "./styles/App.scss";
+
 const App = () => {
   return (
     <>
-      <h1>Taba Retail App</h1>
+      <div className="wrapper">
+        <Header logoName="Taba" />
+        <HomeScreen />
+      </div>
     </>
   );
 };

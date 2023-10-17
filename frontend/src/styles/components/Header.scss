@@ -1,0 +1,15 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.header__logo-name {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.header__buttons {
+  display: flex;
+}
