@@ -12,12 +12,13 @@ import App from "./App.tsx";
 import HomeScreen from "./screens/HomeScreen.tsx";
 import RegisterScreen from "./screens/RegisterScreen.tsx";
 import "./index.css";
+import LoginScreen from "./screens/LoginScreen.tsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route index={true} path="/" element={<HomeScreen />} />
-      <Route path="/register" element={<RegisterScreen />} />
+      <Route path="/login" element={<LoginScreen />} />
       <Route path="/register" element={<RegisterScreen />} />
     </Route>
   )
