@@ -1,6 +1,8 @@
 import * as React from "react";
+import { FaSignInAlt, FaSignOutAlt, FaUser } from "react-icons/fa";
+import { Link, useNavigate } from "react-router-dom";
+
 import "../styles/components/Header.scss";
-import Button from "../widgets/Button";
 
 interface HeaderProps {
   logoName: string;
@@ -10,19 +12,17 @@ const Header: React.FunctionComponent<HeaderProps> = (props) => {
   return (
     <header>
       <div className="header__logo">
-        <p className="header__logo-name">{props.logoName}</p>
+        <Link className="header__logo-name" to="/">
+          {props.logoName}
+        </Link>
       </div>
-      <div className="header__buttons">
-        <Button
-          className="header__button header__button--sign-in"
-          name="Sign In"
-          variant="secondary"
-        />
-        <Button
-          className="header__button header__button--sign-up"
-          name="Sign Up"
-          variant="secondary"
-        />
+      <div className="header__links">
+        <Link className="header__link header__link--sign-in" to="/login">
+          <FaSignInAlt /> Sign In
+        </Link>
+        <Link className="header__link header__link--sign-up" to="/register">
+          <FaUser /> Sign Up
+        </Link>
       </div>
     </header>
   );

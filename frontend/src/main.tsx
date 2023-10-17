@@ -1,11 +1,30 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.tsx";
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+} from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
+
+import App from "./App.tsx";
+import HomeScreen from "./screens/HomeScreen.tsx";
+import RegisterScreen from "./screens/RegisterScreen.tsx";
 import "./index.css";
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<App />}>
+      <Route index={true} path="/" element={<HomeScreen />} />
+      <Route path="/register" element={<RegisterScreen />} />
+      <Route path="/register" element={<RegisterScreen />} />
+    </Route>
+  )
+);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
