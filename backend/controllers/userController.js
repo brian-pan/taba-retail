@@ -1,18 +1,32 @@
 import asyncHandler from "express-async-handler"; // allows use async await
+import generateToken from "../utilities/generateToken.js";
 import User from "../models/userModel.js";
 
 // @description  Authorize user/set token
 // @route        POST /api/users/authorize
 // @access       Public
 const authorizeUser = asyncHandler(async (req, res) => {
-  res.status(200).json({ message: "Authorize User" });
+  const { email, password } = req.body;
+
+  const user = await User.findOne({ email });
+
+  if (user && (await user.matchPassword(password))) {
+    generateToken(res, user._id);
+    res.status(201).json({
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+    });
+  } else {
+    res.status(400);
+    throw new Error("Invalid email or password");
+  }
 });
 
 // @description  Register a new user
 // @route        POST /api/users
 // @access       Public
 const registerUser = asyncHandler(async (req, res) => {
-  console.log(req.body); // data sent in Http body //need body parser middleware
   const { name, email, password } = req.body;
 
   const userExists = await User.findOne({ email });
@@ -25,6 +39,7 @@ const registerUser = asyncHandler(async (req, res) => {
   const user = await User.create({ name, email, password });
 
   if (user) {
+    generateToken(res, user._id);
     res.status(201).json({
       _id: user._id,
       name: user.name,
