@@ -18,10 +18,12 @@ const Header: React.FunctionComponent<HeaderProps> = (props) => {
       </div>
       <div className="header__links">
         <Link className="header__link header__link--sign-in" to="/login">
-          <FaSignInAlt /> Sign In
+          <FaSignInAlt className="header__link-icon header__link-icon--sign-in" />
+          Sign In
         </Link>
         <Link className="header__link header__link--sign-up" to="/register">
-          <FaUser /> Sign Up
+          <FaUser className="header__link-icon header__link-icon--sign-up" />
+          Sign Up
         </Link>
       </div>
     </header>
