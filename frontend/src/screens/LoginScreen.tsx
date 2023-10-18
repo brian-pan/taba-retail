@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Form, Button, Row, Col } from "react-bootstrap";
-import FormContainer from "../components/FormContainer";
+import Form from "../components/Form";
 
 import * as React from "react";
 
@@ -17,11 +16,10 @@ const LoginScreen: React.FunctionComponent<LoginScreenProps> = (props) => {
   };
 
   return (
-    <FormContainer>
+    <div>
       <h1>Sign In</h1>
-
-      <Form onSubmit={handleSubmit}></Form>
-    </FormContainer>
+      <Form onSubmit={handleSubmit(e)}></Form>
+    </div>
   );
 };
 
