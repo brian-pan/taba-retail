@@ -4,7 +4,12 @@ import Hero from "../components/Hero";
 interface HomeScreenProps {}
 
 const HomeScreen: React.FunctionComponent<HomeScreenProps> = (props) => {
-  return <Hero />;
+  return (
+    <div className="home-screen-wrapper">
+      <h1>Home Screen Page</h1>
+      <Hero />
+    </div>
+  );
 };
 
 export default HomeScreen;

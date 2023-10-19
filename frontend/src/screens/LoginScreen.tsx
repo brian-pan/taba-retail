@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useLoginMutation } from "../slices/apiSlices/usersApiSlice";
 import { setCredentials } from "../slices/feSlices/authenticationSlice";
+import { toast } from "react-toastify";
 
 import Form from "../components/Form";
 import "../styles/screens/LoginScreen.scss";
@@ -34,7 +35,7 @@ const LoginScreen: React.FunctionComponent<LoginScreenProps> = () => {
       dispatch(setCredentials({ ...BEresponse })); // set user data to LS
       navigate("/");
     } catch (error: any) {
-      console.log(error.data.message || error.error);
+      toast.error(error?.data?.message || error.error);
     }
   };
 

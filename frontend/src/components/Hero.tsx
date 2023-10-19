@@ -5,7 +5,11 @@ interface HeroProps {}
 
 const Hero: React.FunctionComponent<HeroProps> = (props) => {
   const { userInfo } = useSelector((state: any) => state.authentication);
-  return <div>Welcome, {userInfo.email}</div>;
+  return (
+    <div>
+      <p>Hero Div</p>
+    </div>
+  );
 };
 
 export default Hero;
