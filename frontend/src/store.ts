@@ -1,7 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
 
+import authenticationReducer from "./slices/authorizeSlice";
+
 const store = configureStore({
-  reducer: {},
+  reducer: { authentication: authenticationReducer },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
   devTools: true,
 });
