@@ -1,6 +1,9 @@
 import * as React from "react";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useLoginMutation } from "../slices/apiSlices/usersApiSlice";
+import { setCredentials } from "../slices/feSlices/authenticationSlice";
 
 import Form from "../components/Form";
 import "../styles/screens/RegisterScreen.scss";
@@ -17,6 +20,13 @@ const RegisterScreen: React.FunctionComponent<RegisterScreenProps> = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [passwordRetyped, setPasswordRetyped] = useState<string>("");
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const [login, { isLoading }] = useLoginMutation();
+
+  const { userInfo } = useSelector((state: any) => state.authentication);
 
   // const handleInputChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
   //   const { name, value } = e.target;

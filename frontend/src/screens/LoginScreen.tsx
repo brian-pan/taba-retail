@@ -1,6 +1,9 @@
 import * as React from "react";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useLoginMutation } from "../slices/apiSlices/usersApiSlice";
+import { setCredentials } from "../slices/feSlices/authenticationSlice";
 
 import Form from "../components/Form";
 import "../styles/screens/LoginScreen.scss";
@@ -11,9 +14,28 @@ const LoginScreen: React.FunctionComponent<LoginScreenProps> = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const [login, { isLoading }] = useLoginMutation();
+
+  const { userInfo } = useSelector((state: any) => state.authentication);
+
+  useEffect(() => {
+    if (userInfo) {
+      navigate("/");
+    }
+  }, [navigate, userInfo]); //[dependencies/cond. to trigger]
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("submit");
+    try {
+      const BEresponse = await login({ email, password }).unwrap();
+      dispatch(setCredentials({ ...BEresponse })); // set user data to LS
+      navigate("/");
+    } catch (error: any) {
+      console.log(error.data.message || error.error);
+    }
   };
 
   return (
