@@ -61,10 +61,17 @@ header {
   }
 }
 
+.header__links {
+  display: flex;
+}
+
 .header__link {
+  color: $text-color--primary;
   margin-right: 10px;
   text-decoration: none;
   vertical-align: text-bottom;
+  display: flex;
+  align-items: center;
 }
 
 .header__link-icon {
