@@ -1,17 +1,67 @@
+$relative-unit: 3em;
+$text-color--primary: #fff;
+$background-color: #000;
+
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
+  background-color: $background-color;
+  color: #fff;
+  line-height: 1;
+  height: $relative-unit;
+  padding: 5px 15px;
 }
 
 .header__logo-name {
+  color: #fff;
   font-size: 1.6rem;
   font-weight: 700;
 }
 
+.header__dropdown-component {
+  position: relative;
+}
+
+.header__dropdown-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.header__dropdown-icon-wrapper {
+  border: none;
+  color: $text-color--primary;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #3a3a3a;
+  border-radius: 50%;
+  height: calc($relative-unit * 0.8);
+  width: calc($relative-unit * 0.8);
+  margin-right: 5px;
+  transition: filter 200ms;
+  &:hover {
+    filter: brightness(1.2);
+  }
+  &.header__dropdown-icon-wrapper--is-open {
+    filter: brightness(1.4);
+  }
+}
+
+.header__dropdown-icon {
+  $button-size: calc($relative-unit * 0.42);
+  width: $button-size;
+  height: $button-size;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &.header__dropdown-icon--is-open {
+    transform: rotateX(180deg);
+  }
+}
+
 .header__link {
-  color: #000;
   margin-right: 10px;
   text-decoration: none;
   vertical-align: text-bottom;
@@ -21,4 +71,35 @@ header {
   padding-right: 3px;
   height: 1.1rem;
   width: 1.1rem;
+}
+
+.header__dropdown-content-wrapper {
+  background-color: $background-color;
+  position: absolute;
+  top: calc($relative-unit - 0.5em);
+  width: $relative-unit * 4;
+  right: 0;
+  z-index: 9;
+  transform: translateX(10%);
+  border: none;
+  border-radius: 5px;
+  padding: 1rem;
+  overflow: hidden;
+}
+
+.header__dropdown-content {
+  color: $text-color--primary;
+  height: calc($relative-unit * 0.8);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  transition: background-color 100ms;
+  margin-left: auto;
+  &:hover {
+    background-color: #222222;
+  }
+}
+
+.header__dropdown-content-icon-wrapper {
+  padding: 0 0.5rem;
 }
