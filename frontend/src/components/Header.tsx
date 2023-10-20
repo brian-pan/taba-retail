@@ -5,6 +5,8 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
+import { useLogoutMutation } from "../slices/apiSlices/usersApiSlice";
+import { clearCredentials } from "../slices/feSlices/authenticationSlice";
 import "../styles/components/Header.scss";
 
 interface HeaderProps {
@@ -15,6 +17,21 @@ const Header: React.FunctionComponent<HeaderProps> = (props) => {
   const [isDropDownOpen, setIsDropDownOpen] = useState<boolean>(false);
 
   const { userInfo } = useSelector((state: any) => state.authentication);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [logout] = useLogoutMutation() as any;
+
+  const handleLogout = async () => {
+    try {
+      await logout().unwrap();
+      dispatch(clearCredentials());
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <header className="header">
       <div className="header__logo">
@@ -53,7 +70,11 @@ const Header: React.FunctionComponent<HeaderProps> = (props) => {
                     Update Profile
                   </span>
                 </Link>
-                <Link className="header__dropdown-content" to="/logout">
+                <Link
+                  className="header__dropdown-content"
+                  to="/logout"
+                  onClick={handleLogout}
+                >
                   <span className="header__dropdown-content-icon-wrapper">
                     <FaSignOutAlt className="header__dropdown-content-icon" />
                   </span>

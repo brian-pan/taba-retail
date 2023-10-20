@@ -11,7 +11,7 @@ const authenticationSlice = createSlice({
   name: "authentication",
   initialState,
   reducers: {
-    // state logics
+    // state logics (fe/local)
 
     // set user info to local storage
     setCredentials: (state, action) => {
@@ -20,7 +20,7 @@ const authenticationSlice = createSlice({
     },
 
     // logout
-    clearCredentials: (state, action) => {
+    clearCredentials: (state) => {
       state.userInfo = null;
       localStorage.removeItem("userInfo");
     },
