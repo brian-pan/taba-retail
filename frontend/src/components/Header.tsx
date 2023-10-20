@@ -27,6 +27,7 @@ const Header: React.FunctionComponent<HeaderProps> = (props) => {
     try {
       await logout().unwrap();
       dispatch(clearCredentials());
+      setIsDropDownOpen(false);
       navigate("/");
     } catch (error) {
       console.log(error);
