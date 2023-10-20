@@ -56,7 +56,6 @@ const Form: React.FunctionComponent<FormProps> = ({
               value={userName}
               onChange={(e) => {
                 setUserName?.(e.target.value);
-                console.log(e.target.value);
               }}
               type="email"
               placeholder="Enter Your Email"
@@ -73,7 +72,6 @@ const Form: React.FunctionComponent<FormProps> = ({
             value={email}
             onChange={(e) => {
               setEmail(e.target.value);
-              console.log(e.target.value);
             }}
             type="email"
             placeholder="Enter Your Email"
@@ -92,7 +90,6 @@ const Form: React.FunctionComponent<FormProps> = ({
             value={password}
             onChange={(e) => {
               setPassword(e.target.value);
-              console.log(password);
             }}
             type="password"
             placeholder="Enter Your Password"
