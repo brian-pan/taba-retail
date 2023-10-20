@@ -72,7 +72,7 @@ const Header: React.FunctionComponent<HeaderProps> = (props) => {
                 </Link>
                 <Link
                   className="header__dropdown-content"
-                  to="/logout"
+                  to="/"
                   onClick={handleLogout}
                 >
                   <span className="header__dropdown-content-icon-wrapper">

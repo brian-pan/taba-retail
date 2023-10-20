@@ -7,6 +7,7 @@ import { setCredentials } from "../slices/feSlices/authenticationSlice";
 import { toast } from "react-toastify";
 
 import Form from "../components/Form";
+import Loader from "../components/Loader";
 import "../styles/screens/LoginScreen.scss";
 
 interface LoginScreenProps {}
@@ -41,6 +42,7 @@ const LoginScreen: React.FunctionComponent<LoginScreenProps> = () => {
 
   return (
     <div className="login-screen-wrapper">
+      {isLoading && <Loader />}
       <h1>Sign In</h1>
       <Form
         onSubmit={handleSubmit}
