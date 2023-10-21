@@ -31,8 +31,10 @@ const Form: React.FunctionComponent<FormProps> = ({
   ctaName,
   isCtaHide,
 }) => {
-  const isSignUp =
-    window.location.href.split("/").slice(-1).toString() === "register";
+  const isLogin =
+    window.location.href.split("/").slice(-1).toString() === "login";
+  const isEmailDisabled =
+    window.location.href.split("/").slice(-1).toString() === "profile";
 
   return (
     <div className="form-wrapper">
@@ -42,7 +44,7 @@ const Form: React.FunctionComponent<FormProps> = ({
           (e) => onSubmit(e)
         }
       >
-        {isSignUp && (
+        {!isLogin && (
           <div className="form-group">
             <label
               className="form-label form-label__user-name"
@@ -75,6 +77,7 @@ const Form: React.FunctionComponent<FormProps> = ({
             }}
             type="email"
             placeholder="Enter Your Email"
+            disabled={isEmailDisabled}
           />
         </div>
         <div className="form-group">
@@ -95,7 +98,7 @@ const Form: React.FunctionComponent<FormProps> = ({
             placeholder="Enter Your Password"
           />
         </div>
-        {isSignUp && (
+        {!isLogin && (
           <div className="form-group">
             <label
               className="form-label form-label__password form-label__password--retyped"

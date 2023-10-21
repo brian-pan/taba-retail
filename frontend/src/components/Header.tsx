@@ -63,7 +63,7 @@ const Header: React.FunctionComponent<HeaderProps> = (props) => {
             </div>
             {isDropDownOpen && (
               <div className="header__dropdown-content-wrapper">
-                <Link className="header__dropdown-content" to="/">
+                <Link className="header__dropdown-content" to="/profile">
                   <span className="header__dropdown-content-icon-wrapper">
                     <FaUser className="header__dropdown-content-icon" />
                   </span>
