@@ -1,8 +1,8 @@
 import * as React from "react";
 
-interface IProfileScreenProps {}
+interface ProfileScreenProps {}
 
-const ProfileScreen: React.FunctionComponent<IProfileScreenProps> = (props) => {
+const ProfileScreen: React.FunctionComponent<ProfileScreenProps> = (props) => {
   return <div>Profile Screen Page</div>;
 };
 
