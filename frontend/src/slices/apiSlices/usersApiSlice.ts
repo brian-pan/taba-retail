@@ -6,10 +6,10 @@ export const usersApiSlice = apiSlice.injectEndpoints({
   //inject to builder in apiSLice
   endpoints: (builder) => ({
     register: builder.mutation({
-      query: (userData) => ({
+      query: (data) => ({
         url: `${USERS_URL}`,
         method: "POST",
-        body: userData,
+        body: data,
       }),
     }),
     login: builder.mutation({

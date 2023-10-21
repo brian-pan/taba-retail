@@ -57,8 +57,8 @@ const Form: React.FunctionComponent<FormProps> = ({
               onChange={(e) => {
                 setUserName?.(e.target.value);
               }}
-              type="email"
-              placeholder="Enter Your Email"
+              type="text"
+              placeholder="Enter User Name"
             />
           </div>
         )}

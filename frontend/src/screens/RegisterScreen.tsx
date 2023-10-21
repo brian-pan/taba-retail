@@ -2,10 +2,12 @@ import * as React from "react";
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { useLoginMutation } from "../slices/apiSlices/usersApiSlice";
+import { useRegisterMutation } from "../slices/apiSlices/usersApiSlice";
 import { setCredentials } from "../slices/feSlices/authenticationSlice";
+import { toast } from "react-toastify";
 
 import Form from "../components/Form";
+import Loader from "../components/Loader";
 import "../styles/screens/RegisterScreen.scss";
 
 interface RegisterScreenProps {}
@@ -21,21 +23,41 @@ const RegisterScreen: React.FunctionComponent<RegisterScreenProps> = () => {
   const [password, setPassword] = useState<string>("");
   const [passwordRetyped, setPasswordRetyped] = useState<string>("");
 
+  const { userInfo } = useSelector((state: any) => state.authentication);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const [login, { isLoading }] = useLoginMutation();
+  const [register, { isLoading }] = useRegisterMutation();
 
-  const { userInfo } = useSelector((state: any) => state.authentication);
+  useEffect(() => {
+    if (userInfo) {
+      navigate("/");
+    }
+  }, [navigate, userInfo]);
 
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (password !== passwordRetyped) {
+      toast.error("Passwords do not match");
+    } else {
+      try {
+        const BEresponse = await register({
+          name: userName,
+          email,
+          password,
+        }).unwrap();
+        dispatch(setCredentials({ ...BEresponse }));
+        navigate("/");
+      } catch (error: any) {
+        toast.error(error?.data?.message || error.error);
+      }
+    }
+  };
   // const handleInputChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
   //   const { name, value } = e.target;
   //   setFormData({ ...formData, [name]: value });
   // };
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-  };
 
   return (
     <div className="register-screen-wrapper">
@@ -52,6 +74,7 @@ const RegisterScreen: React.FunctionComponent<RegisterScreenProps> = () => {
         setPasswordRetyped={setPasswordRetyped}
         ctaName="Register"
       ></Form>
+      {isLoading && <Loader />}
       <p>
         Already have an account? <Link to="/login">Sign In</Link>
       </p>
