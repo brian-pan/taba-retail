@@ -12,6 +12,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { useLogoutMutation } from "../slices/apiSlices/usersApiSlice";
 import { clearCredentials } from "../slices/feSlices/authenticationSlice";
+import logo from "../assets/images/logo/logo-old.png";
 import "../assets/styles/components/Header.scss";
 
 interface HeaderProps {
@@ -41,8 +42,17 @@ const Header: React.FunctionComponent<HeaderProps> = (props) => {
   return (
     <header className="header">
       <div className="header__logo">
-        <Link className="header__logo-name" to="/">
-          {props.logoName}
+        <Link
+          className="header__logo-link"
+          to="/"
+          aria-labelledby="headerLogoImage"
+        >
+          <img
+            className="header__logo-image"
+            id="headerLogoImage"
+            src={logo}
+            alt={props.logoName}
+          />
         </Link>
       </div>
 

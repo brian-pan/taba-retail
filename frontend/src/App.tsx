@@ -10,7 +10,7 @@ const App = () => {
   return (
     <>
       <div className="wrapper">
-        <Header logoName="Taba" />
+        <Header logoName="Tabagie Des Pins" />
         <ToastContainer />
 
         <div>

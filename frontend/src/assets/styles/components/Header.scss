@@ -14,10 +14,17 @@ header {
   padding: 5px 15px;
 }
 
-.header__logo-name {
+.header__logo-link {
   color: #fff;
   font-size: 1.6rem;
   font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header__logo-image {
+  width: $relative-unit * 3;
 }
 
 .header__dropdown-component {

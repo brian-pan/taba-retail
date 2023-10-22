@@ -17,6 +17,7 @@ import RegisterScreen from "./screens/RegisterScreen.tsx";
 import LoginScreen from "./screens/LoginScreen.tsx";
 import ProfileScreen from "./screens/ProfileScreen.tsx";
 import "./assets/styles/index.scss";
+// import "./assets/styles/bootstrap.custom.css";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
