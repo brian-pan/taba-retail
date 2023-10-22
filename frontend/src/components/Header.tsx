@@ -1,5 +1,10 @@
 import * as React from "react";
-import { FaSignInAlt, FaSignOutAlt, FaUser } from "react-icons/fa";
+import {
+  FaSignInAlt,
+  FaSignOutAlt,
+  FaUser,
+  FaShoppingCart,
+} from "react-icons/fa";
 import { IoCaretDown } from "react-icons/io5";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -90,15 +95,15 @@ const Header: React.FunctionComponent<HeaderProps> = (props) => {
       ) : (
         <>
           <div className="header__links">
+            <Link className="header__link header__link--sign-up" to="/register">
+              <FaShoppingCart className="header__link-icon header__link-icon--cart" />
+              Cart
+            </Link>
             <Link className="header__link header__link--sign-in" to="/login">
               <span>
                 <FaSignInAlt className="header__link-icon header__link-icon--sign-in" />
               </span>
               <span>Sign In</span>
-            </Link>
-            <Link className="header__link header__link--sign-up" to="/register">
-              <FaUser className="header__link-icon header__link-icon--sign-up" />
-              Sign Up
             </Link>
           </div>
         </>
