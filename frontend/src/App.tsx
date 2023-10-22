@@ -4,7 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import "./styles/App.scss";
+import "./assets/styles/App.scss";
 
 const App = () => {
   return (

@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 
 import Form from "../components/Form";
 import Loader from "../components/Loader";
-import "../styles/screens/RegisterScreen.scss";
+import "../assets/styles/screens/RegisterScreen.scss";
 
 interface RegisterScreenProps {}
 

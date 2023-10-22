@@ -8,15 +8,15 @@ import {
 } from "react-router-dom";
 import store from "./store.ts";
 import { Provider } from "react-redux";
-import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
 
 import App from "./App.tsx";
 import PrivateRoute from "./components/PrivateRoute.tsx";
 import HomeScreen from "./screens/HomeScreen.tsx";
 import RegisterScreen from "./screens/RegisterScreen.tsx";
-import "./index.css";
 import LoginScreen from "./screens/LoginScreen.tsx";
 import ProfileScreen from "./screens/ProfileScreen.tsx";
+import "./assets/styles/index.scss";
 
 const router = createBrowserRouter(
   createRoutesFromElements(

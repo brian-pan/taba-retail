@@ -12,7 +12,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { useLogoutMutation } from "../slices/apiSlices/usersApiSlice";
 import { clearCredentials } from "../slices/feSlices/authenticationSlice";
-import "../styles/components/Header.scss";
+import "../assets/styles/components/Header.scss";
 
 interface HeaderProps {
   logoName: string;

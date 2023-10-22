@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import "../styles/components/Form.scss";
+import "../assets/styles/components/Form.scss";
 
 interface FormProps {
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
