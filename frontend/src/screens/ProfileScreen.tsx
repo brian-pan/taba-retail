@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setCredentials } from "../slices/feSlices/authenticationSlice";
 import { useUpdateProfileMutation } from "../slices/apiSlices/usersApiSlice";

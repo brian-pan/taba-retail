@@ -33,7 +33,7 @@ const Header: React.FunctionComponent<HeaderProps> = (props) => {
       await logout().unwrap();
       dispatch(clearCredentials());
       setIsDropDownOpen(false);
-      navigate("/");
+      // navigate("/");
     } catch (error) {
       console.log(error);
     }
@@ -72,7 +72,10 @@ const Header: React.FunctionComponent<HeaderProps> = (props) => {
                   <span className="header__dropdown-content-icon-wrapper">
                     <FaUser className="header__dropdown-content-icon" />
                   </span>
-                  <span className="header__dropdown-content-label">
+                  <span
+                    className="header__dropdown-content-label"
+                    onClick={() => setIsDropDownOpen(false)}
+                  >
                     Update Profile
                   </span>
                 </Link>
