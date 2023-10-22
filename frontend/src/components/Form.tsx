@@ -72,9 +72,7 @@ const Form: React.FunctionComponent<FormProps> = ({
             className="form-input__email"
             id="formEmail"
             value={email}
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
+            onChange={(e) => setEmail(e.target.value)}
             type="email"
             placeholder="Enter Your Email"
             disabled={isEmailDisabled}
