@@ -1,10 +1,10 @@
 import * as React from "react";
-import Hero from "../components/Hero";
+import Product from "../components/Product.tsx";
 import products from "../assets/products.ts";
 
 interface HomeScreenProps {}
 
-const HomeScreen: React.FunctionComponent<HomeScreenProps> = (props) => {
+const HomeScreen: React.FunctionComponent<HomeScreenProps> = () => {
   return (
     <>
       <div className="home-screen-wrapper">
@@ -12,9 +12,7 @@ const HomeScreen: React.FunctionComponent<HomeScreenProps> = (props) => {
         <div>
           {products.map((product, index) => {
             return (
-              <div className={`card card-${index + 1}`}>
-                <h3>{product.name}</h3>
-              </div>
+              <Product key={product._id} product={product} index={index} />
             );
           })}
         </div>

@@ -1,0 +1,6 @@
+.product {
+  border: 1px solid red;
+  &:nth-of-type(2n) {
+    border: 2px dotted green;
+  }
+}

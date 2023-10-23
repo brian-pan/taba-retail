@@ -1,13 +1,15 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 
+import "../assets/styles/components/Product.scss";
+
 interface Product {
   _id: string;
   name: string;
   brand: string;
   price: number;
   category: string;
-  isInStock: boolean;
+  isInStock?: boolean;
   image: string;
   description: string;
   unit?: string;
@@ -18,27 +20,32 @@ interface Product {
 
 interface ProductProps {
   product: Product;
+  index: number;
 }
 
-const Product: React.FunctionComponent<ProductProps> = ({ product }) => {
+const Product: React.FunctionComponent<ProductProps> = ({ product, index }) => {
   return (
-    <div className="product">
+    <div className={`product product-${index + 1} product-${product._id}`}>
       <Link
         className="product__image-wrapper"
-        to={`/product/${product._id}`}
+        // to={`/product/${product._id}`}
+        to="/"
         aria-hidden={true}
       >
         <img
           className="product__image"
-          // src={product.image}
-          src="https://i5.walmartimages.ca/images/Enlarge/094/514/6000200094514.jpg"
+          src={product.image}
           alt={product.brand + product.name}
           aria-label={product.brand + product.name}
         />
       </Link>
 
       <div className="product__info">
-        <Link className="product__title-wrapper" to={`/product/${product._id}`}>
+        <Link
+          className="product__title-wrapper"
+          // to={`/product/${product._id}`}
+          to="/"
+        >
           <h3 className="product__title">
             <span className="product__title-brand">{product.brand}</span>{" "}
             <span className="product__title-name">{product.name}</span>
