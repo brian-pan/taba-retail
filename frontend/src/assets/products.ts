@@ -11,6 +11,7 @@ const products = [
     countInStock: 10,
     rating: 4.5,
     numReviews: 12,
+    isInStock: true,
   },
   {
     _id: "2",
@@ -24,6 +25,8 @@ const products = [
     countInStock: 7,
     rating: 4.0,
     numReviews: 8,
+    unit: "256G",
+    isInStock: true,
   },
   {
     _id: "3",
