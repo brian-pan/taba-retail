@@ -7,6 +7,7 @@ import connectDB from "./config/database.js";
 import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 const port = process.env.PORT || 5000;
 import userRoutes from "./routes/userRoutes.js";
+import productRoutes from "./routes/productRoutes.js";
 
 connectDB();
 
@@ -18,17 +19,9 @@ app.use(express.urlencoded({ extended: true })); // allows parse form data
 app.use(cookieParser());
 
 app.use("/api/users", userRoutes);
+app.use("/api/products", productRoutes);
 
 app.get("/", (req, res) => res.send("Server is Ready"));
-
-// app.get("/api/products", (req, res) => {
-//   res.json(products);
-// });
-
-// app.get("/api/products/:id", (req, res) => {
-//   const product = product.find((p) => p._id === req.params.id);
-//   res.json(product);
-// });
 
 app.use(notFound);
 app.use(errorHandler);
