@@ -11,7 +11,7 @@ interface Product {
   category: string;
   isInStock?: boolean;
   image: string;
-  description: string;
+  description?: string;
   unit?: string;
   rating?: number;
   numberReviews?: number;
