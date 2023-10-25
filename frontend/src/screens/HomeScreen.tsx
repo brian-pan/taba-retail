@@ -1,17 +1,20 @@
 import * as React from "react";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import Product from "../components/Product.tsx";
 import axios from "axios";
 
-import Product from "../components/Product.tsx";
-
+// import { useGetProductsQuery } from "../slices/apiSlices/productsApiSlice.ts";
 interface HomeScreenProps {}
 
 const HomeScreen: React.FunctionComponent<HomeScreenProps> = () => {
+  // const { data: products, isLoading, isError } = useGetProductsQuery();
+
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
     const fetchProducts = async () => {
       const { data } = await axios.get("/api/products");
+
       setProducts(data);
     };
 

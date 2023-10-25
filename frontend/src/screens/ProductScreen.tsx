@@ -1,15 +1,24 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
-
-import products from "../assets/products";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 interface ProductScreenProps {}
 
 const ProductScreen: React.FunctionComponent<ProductScreenProps> = () => {
+  const [product, setProduct] = useState([]);
   // const productId = useParams().id;
   const { id: productId } = useParams();
-  const product = products.find((prod) => prod._id === productId);
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      const { data } = await axios.get(`/api/products/${productId}`);
+      setProduct(data);
+    };
+
+    fetchProduct();
+  }, [productId]);
 
   return (
     <>
