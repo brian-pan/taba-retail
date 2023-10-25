@@ -1,6 +1,6 @@
 // Endpoints to work with BE
 import { apiSlice } from "../apiSlice";
-const USERS_URL = "/api/users";
+import { USERS_URL } from "../../constants";
 
 export const usersApiSlice = apiSlice.injectEndpoints({
   //inject to builder in apiSLice
