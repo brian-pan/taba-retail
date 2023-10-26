@@ -26,9 +26,7 @@ const HomeScreen: React.FunctionComponent<HomeScreenProps> = () => {
         <h1>Discover Our Products</h1>
         <div>
           {products.map((product, index) => {
-            return (
-              <Product key={product._id} product={product} index={index} />
-            );
+            return <Product key={index} product={product} index={index} />;
           })}
         </div>
       </div>

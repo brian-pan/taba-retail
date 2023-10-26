@@ -28,7 +28,7 @@ const Product: React.FunctionComponent<ProductProps> = ({ product, index }) => {
     <div className={`product product-${index + 1} product-${product._id}`}>
       <Link
         className="product__image-wrapper"
-        to={`/product/${product._id}`}
+        to={`/products/${product._id}`}
         aria-hidden={true}
       >
         <img
@@ -40,7 +40,10 @@ const Product: React.FunctionComponent<ProductProps> = ({ product, index }) => {
       </Link>
 
       <div className="product__info">
-        <Link className="product__title-wrapper" to={`/product/${product._id}`}>
+        <Link
+          className="product__title-wrapper"
+          to={`/products/${product._id}`}
+        >
           <h3 className="product__title">
             <span className="product__title-brand">{product.brand}</span>{" "}
             <span className="product__title-name">{product.name}</span>
