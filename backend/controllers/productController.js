@@ -1,5 +1,4 @@
 import asyncHandler from "../middleware/asyncHandler.js";
-import products from "../data/products.js";
 import Product from "../models/productModel.js";
 
 // @description   Fetch/Get all products
