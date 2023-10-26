@@ -1,6 +1,5 @@
 const products = [
   {
-    _id: "0",
     name: "Airpods Wireless Bluetooth Headphones",
     image: "/images/airpods.jpg",
     description:
@@ -12,9 +11,9 @@ const products = [
     rating: 4.5,
     numReviews: 12,
     isInStock: true,
+    unit: "1",
   },
   {
-    _id: "1",
     name: "iPhone 11 Pro 256GB Memory",
     image: "/images/phone.jpg",
     description:
@@ -27,9 +26,9 @@ const products = [
     numReviews: 8,
     unit: "256G",
     isInStock: true,
+    unit: "1 x 256G",
   },
   {
-    _id: "2",
     name: "Cannon EOS 80D DSLR Camera",
     image: "/images/camera.jpg",
     description:
@@ -37,9 +36,10 @@ const products = [
     brand: "Cannon",
     category: "Electronics",
     price: 929.99,
-    countInStock: 5,
+    numberInStock: 5,
     rating: 3,
     numReviews: 12,
+    unit: "1",
   },
 ];
 

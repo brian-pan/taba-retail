@@ -7,7 +7,7 @@ import axios from "axios";
 interface ProductScreenProps {}
 
 const ProductScreen: React.FunctionComponent<ProductScreenProps> = () => {
-  const [product, setProduct] = useState([]);
+  const [product, setProduct] = useState<any>({});
   // const productId = useParams().id;
   const { id: productId } = useParams();
 

@@ -13,8 +13,8 @@ import "../assets/styles/screens/LoginScreen.scss";
 interface LoginScreenProps {}
 
 const LoginScreen: React.FunctionComponent<LoginScreenProps> = () => {
-  const [email, setEmail] = useState<string>("norahzheng@gmail.com");
-  const [password, setPassword] = useState<string>("nz");
+  const [email, setEmail] = useState<string>("nz@gmail.com");
+  const [password, setPassword] = useState<string>("123456");
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
