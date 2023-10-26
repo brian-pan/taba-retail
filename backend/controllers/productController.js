@@ -6,16 +6,16 @@ import Product from "../models/productModel.js";
 // @route         GET /api/products
 // @access        Public
 const getProducts = asyncHandler(async (req, res) => {
+  const products = await Product.find({}); // get all
   res.json(products);
-  // const products = await Product.find({}); // get all
 });
 
 // @description   Fetch/Get a product
 // @route         GET /api/products/:id
 // @access        Public
 const getProductById = asyncHandler(async (req, res) => {
-  // const product = await Product.findById(req.params.id); //from /:id
-  const product = products[req.params.id];
+  const product = await Product.findById(req.params.id); //from /:id
+
   if (product) {
     return res.json(product);
   } else {
