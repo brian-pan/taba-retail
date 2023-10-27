@@ -1,9 +1,10 @@
 // make async call to BE with thunk middleware
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { BASE_URL } from "../constants.ts";
 
 // boilerplate
 const baseQuery = fetchBaseQuery({
-  baseUrl: "",
+  baseUrl: BASE_URL,
 });
 
 export const apiSlice = createApi({
