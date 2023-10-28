@@ -2,6 +2,7 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
+import Loader from "../components/Loader";
 import { useGetProductDetailsQuery } from "../slices/apiSlices/productsApiSlice";
 
 interface ProductScreenProps {}
@@ -29,7 +30,7 @@ const ProductScreen: React.FunctionComponent<ProductScreenProps> = () => {
 
         {isLoading ? (
           <>
-            <h2>is loading ...</h2>
+            <Loader />
           </>
         ) : error ? (
           <>

@@ -1,5 +1,6 @@
 import * as React from "react";
 import Product from "../components/Product.tsx";
+import Loader from "../components/Loader.tsx";
 
 import { useGetProductsQuery } from "../slices/apiSlices/productsApiSlice.ts";
 
@@ -25,7 +26,7 @@ const HomeScreen: React.FunctionComponent<HomeScreenProps> = () => {
 
   return (
     <>
-      {isLoading && <h2>is loading ...</h2>}
+      {isLoading && <Loader />}
       {!isLoading && (
         <div className="home-screen-wrapper">
           <h1>Discover Our Products</h1>
