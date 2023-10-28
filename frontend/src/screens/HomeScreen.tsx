@@ -1,7 +1,7 @@
 import * as React from "react";
 import Product from "../components/Product.tsx";
 import Loader from "../components/Loader.tsx";
-
+import Message from "../components/Message.tsx";
 import { useGetProductsQuery } from "../slices/apiSlices/productsApiSlice.ts";
 
 interface HomeScreenProps {}
@@ -27,6 +27,11 @@ const HomeScreen: React.FunctionComponent<HomeScreenProps> = () => {
   return (
     <>
       {isLoading && <Loader />}
+      {error && (
+        <Message variant="danger">
+          {error?.data?.message || error.error}
+        </Message>
+      )}
       {!isLoading && (
         <div className="home-screen-wrapper">
           <h1>Discover Our Products</h1>
