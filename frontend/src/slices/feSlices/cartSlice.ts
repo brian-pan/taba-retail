@@ -1,5 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+import { CartItemType, ProductType } from "../../types";
+
 const initialState = localStorage.getItem("cart")
   ? JSON.parse(localStorage.getItem("cart") as string)
   : { cartItems: [] };
@@ -15,19 +17,19 @@ const cartSlice = createSlice({
     addToCart: (state, action) => {
       const item = action.payload;
 
-      let isItemExisted = false;
-      if (state.cartItems.forEach((cartItem) => cartItem._id === item._id)) {
-        isItemExisted = true;
-      }
+      const existItem = state.cartItems.find(
+        (cartItem: ProductType) => cartItem._id === item._id
+      );
 
-      if (isItemExisted) {
-        state.cartItems = state.cartItems.map((cartItem) =>
-          cartItem._id === item._id ? item : cartItem
+      if (existItem) {
+        state.cartItems = state.cartItems.map((cartItem: ProductType) =>
+          cartItem._id === existItem._id ? item : cartItem
         );
       } else {
-        state.cartItems = [...state.cartItem, item];
+        state.cartItems = [...state.cartItems, item];
       }
 
+      console.log("state.cartItems", state.cartItems);
       // Calc item price
       state.itemsPrice = addDecimals(
         state.cartItems.reduce(
@@ -48,7 +50,9 @@ const cartSlice = createSlice({
           break;
       }
       // Montreal tax price - 15%
-      state.taxPrice = addDecimals(Number(0.15 * state.itemsPrice.toFixed(2)));
+      state.taxPrice = addDecimals(
+        Number((0.15 * state.itemsPrice).toFixed(2))
+      );
 
       // Total
       state.totalPrice = (

@@ -1,25 +1,11 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 
+import { ProductType } from "../types";
 import "../assets/styles/components/Product.scss";
 
-interface Product {
-  _id: string;
-  name: string;
-  brand: string;
-  price: number;
-  category: string;
-  isInStock?: boolean;
-  image: string;
-  description?: string;
-  unit?: string;
-  rating?: number;
-  numberReviews?: number;
-  numberInStock?: number;
-}
-
 interface ProductProps {
-  product: Product;
+  product: ProductType;
   index: number;
 }
 

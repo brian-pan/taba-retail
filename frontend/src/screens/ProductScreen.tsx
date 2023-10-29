@@ -30,6 +30,7 @@ const ProductScreen: React.FunctionComponent<ProductScreenProps> = () => {
     if (qty > 0) {
       setQty(qty - 1);
     }
+    console.log();
   };
 
   const onPlusBtnClick = () => {
@@ -37,12 +38,17 @@ const ProductScreen: React.FunctionComponent<ProductScreenProps> = () => {
       if (qty < product.numberInStock) {
         setQty(qty + 1);
       }
+    } else {
+      setQty(qty + 1);
     }
   };
 
   const handleAddToCart = () => {
-    dispatch(addToCart({ ...product, qty }));
-    navigate("/cart");
+    if (qty === 0) {
+      setQty(1);
+      dispatch(addToCart({ ...product, qty }));
+    }
+    // navigate("/cart");
   };
   return (
     <>
