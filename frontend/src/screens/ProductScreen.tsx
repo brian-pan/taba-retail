@@ -30,7 +30,6 @@ const ProductScreen: React.FunctionComponent<ProductScreenProps> = () => {
     if (qty > 0) {
       setQty(qty - 1);
     }
-    console.log();
   };
 
   const onPlusBtnClick = () => {
