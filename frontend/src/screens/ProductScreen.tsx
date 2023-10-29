@@ -1,18 +1,23 @@
 import * as React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 import Loader from "../components/Loader";
 import { useGetProductDetailsQuery } from "../slices/apiSlices/productsApiSlice";
+import { addToCart } from "../slices/feSlices/cartSlice";
 
 interface ProductScreenProps {}
 
 const ProductScreen: React.FunctionComponent<ProductScreenProps> = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   // const productId = useParams().id;
   const { id: productId } = useParams();
 
-  const [qty, setQty] = useState<number>(1);
+  const [qty, setQty] = useState<number>(0);
 
   // get prod dtls data from db
   const {
@@ -33,6 +38,11 @@ const ProductScreen: React.FunctionComponent<ProductScreenProps> = () => {
         setQty(qty + 1);
       }
     }
+  };
+
+  const handleAddToCart = () => {
+    dispatch(addToCart({ ...product, qty }));
+    navigate("/cart");
   };
   return (
     <>
@@ -93,7 +103,12 @@ const ProductScreen: React.FunctionComponent<ProductScreenProps> = () => {
                   </>
                 ) : (
                   <>
-                    <button disabled={!product?.isInStock}>Add to Cart</button>
+                    <button
+                      disabled={!product?.isInStock}
+                      onClick={handleAddToCart}
+                    >
+                      Add to Cart
+                    </button>
                   </>
                 )}
               </div>
