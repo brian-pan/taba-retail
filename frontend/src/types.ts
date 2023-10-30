@@ -13,14 +13,28 @@ export interface ProductType {
   numberReviews?: number;
 }
 
-export interface CartItemType {
+export interface cartItemType {
+  _id: string;
   name: string;
-  qty: number;
-  image: string;
+  brand: string;
   price: number;
-  product: ProductType;
+  image: string;
+  category: string;
+  isInStock?: boolean;
+  qty: number;
+  updatedAt: string;
+  user: string;
+  numberInStock?: number;
+  description?: string;
+  unit?: string;
+  rating?: number;
+  numberReviews?: number;
 }
 
-export interface OrderItemsType {
-  orderItems: CartItemType[];
+export interface cartStateType {
+  cartItems: cartItemType[];
+  itemsPrice: string | number;
+  deliverPrice: string | number;
+  taxPrice: string | number;
+  totalPrice: string | number;
 }

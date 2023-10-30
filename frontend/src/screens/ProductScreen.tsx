@@ -2,11 +2,11 @@ import * as React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useParams, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import Loader from "../components/Loader";
 import { useGetProductDetailsQuery } from "../slices/apiSlices/productsApiSlice";
-import { addToCart } from "../slices/feSlices/cartSlice";
+import { addToCart, updateCart } from "../slices/feSlices/cartSlice";
 
 interface ProductScreenProps {}
 
@@ -17,9 +17,11 @@ const ProductScreen: React.FunctionComponent<ProductScreenProps> = () => {
   // const productId = useParams().id;
   const { id: productId } = useParams();
 
+  const cart = useSelector((state: any) => state.cart);
+
   const [qty, setQty] = useState<number>(0);
 
-  // get prod dtls data from db
+  // Get prod dtls data from db
   const {
     data: product,
     isLoading,
@@ -29,6 +31,7 @@ const ProductScreen: React.FunctionComponent<ProductScreenProps> = () => {
   const onMinusBtnClick = () => {
     if (qty > 0) {
       setQty(qty - 1);
+      dispatch(updateCart({ ...product, qty: qty }));
     }
   };
 
@@ -40,14 +43,18 @@ const ProductScreen: React.FunctionComponent<ProductScreenProps> = () => {
     } else {
       setQty(qty + 1);
     }
+    dispatch(updateCart({ ...product, qty: qty }));
   };
 
   const handleAddToCart = () => {
+    console.log(cart);
+
     if (qty === 0) {
       setQty(1);
-      dispatch(addToCart({ ...product, qty }));
+      dispatch(addToCart({ ...product, qty: qty }));
     }
-    // navigate("/cart");
+
+    navigate(`/products/${productId}`); // change to /cart required
   };
   return (
     <>
@@ -67,6 +74,7 @@ const ProductScreen: React.FunctionComponent<ProductScreenProps> = () => {
           </>
         ) : error ? (
           <>
+            {/* @ts-ignore */}
             <div>{error?.data?.message || error.error}</div>
           </>
         ) : (

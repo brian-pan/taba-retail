@@ -1,21 +1,40 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { CartItemType, ProductType } from "../../types";
+import { ProductType } from "../../types";
+import { calcPrice } from "../../utilities/cartUtilities";
 
 const initialState = localStorage.getItem("cart")
   ? JSON.parse(localStorage.getItem("cart") as string)
   : { cartItems: [] };
 
-const addDecimals = (num: number) => {
-  return (Math.round(num * 100) / 100).toFixed(2);
-};
-
 const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
+    // Upd single cart item
+    updateCart: (state, action) => {
+      const item = action.payload;
+      console.log(item);
+
+      state.cartItems = [...state.cartItems, { ...item, qty: item.qty }];
+
+      // console.log(state.cartItems);
+
+      calcPrice(state);
+
+      localStorage.setItem("cart", JSON.stringify(state));
+      // console.log("state.totalPrice", state.totalPrice);
+
+      return state;
+    },
+    removeCartItem: () => {},
+    // Add new item to cart
     addToCart: (state, action) => {
       const item = action.payload;
+
+      console.log(item);
+      item.qty = 1;
+      console.log(item);
 
       const existItem = state.cartItems.find(
         (cartItem: ProductType) => cartItem._id === item._id
@@ -26,48 +45,25 @@ const cartSlice = createSlice({
           cartItem._id === existItem._id ? item : cartItem
         );
       } else {
+        // Set new cartItems Arr tho rest opr
         state.cartItems = [...state.cartItems, item];
       }
 
-      console.log("state.cartItems", state.cartItems);
-      // Calc item price
-      state.itemsPrice = addDecimals(
-        state.cartItems.reduce(
-          (acc: number, item) => acc + item.price * item.qty,
-          0
-        )
-      );
-      // deliver fee - over 100 free, over 50 8$, less 50 10$
-      switch (state.deliverPrice) {
-        case state.itemsPrice >= 100:
-          state.deliverPrice = 0;
-          break;
-        case 50 <= state.itemsPrice && state.itemsPrice < 100:
-          state.deliverPrice = 8;
-          break;
-        case state.itemsPrice < 50:
-          state.deliverPrice = 10;
-          break;
-      }
-      // Montreal tax price - 15%
-      state.taxPrice = addDecimals(
-        Number((0.15 * state.itemsPrice).toFixed(2))
-      );
+      calcPrice(state);
+      // console.log(calcPrice(state));
 
-      // Total
-      state.totalPrice = (
-        Number(state.itemsPrice) +
-        Number(state.deliverPrice) +
-        Number(state.taxPrice)
-      ).toFixed(2);
-
-      // save to localStorage
       localStorage.setItem("cart", JSON.stringify(state));
+      // console.log(state.cartItems);
+
+      return state;
+    },
+    deleteFromCart: () => {
+      // delete single product from cart whose qty=0
     },
   },
 });
 
 // export an action
-export const { addToCart } = cartSlice.actions;
+export const { addToCart, updateCart } = cartSlice.actions;
 
 export default cartSlice.reducer;
