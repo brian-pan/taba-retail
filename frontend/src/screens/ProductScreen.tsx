@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,7 +14,7 @@ const ProductScreen: React.FunctionComponent<ProductScreenProps> = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // const productId = useParams().id;
+  // const productId = useParams().id; //alt code syntax
   const { id: productId } = useParams();
 
   const cartState = useSelector((state: any) => state.cart);
@@ -26,6 +26,7 @@ const ProductScreen: React.FunctionComponent<ProductScreenProps> = () => {
     error,
   } = useGetProductDetailsQuery(productId);
 
+  // Watch state upon loading product detail page
   useEffect(() => {
     console.log("cartState (on loading)", cartState);
   }, []);
