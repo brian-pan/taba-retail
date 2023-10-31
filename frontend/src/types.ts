@@ -32,10 +32,10 @@ export interface cartItemType {
 }
 
 export interface cartPricesType {
-  itemsPrice: string | number;
-  deliverPrice: string | number;
-  taxPrice: string | number;
-  totalPrice: string | number;
+  itemsPrice: number;
+  deliverPrice: number;
+  taxPrice: number;
+  totalPrice: number;
 }
 
 export interface cartStateType {

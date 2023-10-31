@@ -1,5 +1,7 @@
+// import { cartStateType } from "../types";
+
 export const addDecimals = (num: number) => {
-  return (Math.round(num * 100) / 100).toFixed(2);
+  return Number((Math.round(num * 100) / 100).toFixed(2));
 };
 
 // state type req.
@@ -28,11 +30,9 @@ export const calcPrice = (state) => {
   prices.taxPrice = addDecimals(Number((0.15 * prices.itemsPrice).toFixed(2)));
 
   // Total
-  prices.totalPrice = (
-    Number(prices.itemsPrice) +
-    Number(prices.deliverPrice) +
-    Number(prices.taxPrice)
-  ).toFixed(2);
+  prices.totalPrice = Number(
+    (prices.itemsPrice + prices.deliverPrice + prices.taxPrice).toFixed(2)
+  );
 
   return state;
 };
