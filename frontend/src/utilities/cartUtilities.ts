@@ -5,8 +5,9 @@ export const addDecimals = (num: number) => {
 // state type req.
 // @ts-ignore
 export const calcPrice = (state) => {
+  const prices = state.prices;
   // Calc item price
-  state.itemsPrice = addDecimals(
+  prices.itemsPrice = addDecimals(
     state.cartItems.reduce(
       // item type required
       // @ts-ignore
@@ -15,26 +16,23 @@ export const calcPrice = (state) => {
     )
   );
   // deliver fee - over 100 free, over 50 8$, less 50 10$
-  if (state.itemsPrice >= 100) {
-    state.deliverPrice = 0;
-  } else if (state.itemsPrice > 50) {
-    state.deliverPrice = 6;
+  if (prices.itemsPrice >= 100) {
+    prices.deliverPrice = 0;
+  } else if (prices.itemsPrice > 50) {
+    prices.deliverPrice = 6;
   } else {
-    state.deliverPrice = 10;
+    prices.deliverPrice = 10;
   }
 
   // Montreal tax price - 15%
-  state.taxPrice = addDecimals(Number((0.15 * state.itemsPrice).toFixed(2)));
+  prices.taxPrice = addDecimals(Number((0.15 * prices.itemsPrice).toFixed(2)));
 
   // Total
-  state.totalPrice = (
-    Number(state.itemsPrice) +
-    Number(state.deliverPrice) +
-    Number(state.taxPrice)
+  prices.totalPrice = (
+    Number(prices.itemsPrice) +
+    Number(prices.deliverPrice) +
+    Number(prices.taxPrice)
   ).toFixed(2);
-
-  // save to localStorage
-  localStorage.setItem("cart", JSON.stringify(state));
 
   return state;
 };
