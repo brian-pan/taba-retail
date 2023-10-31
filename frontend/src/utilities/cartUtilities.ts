@@ -1,18 +1,14 @@
-// import { cartStateType } from "../types";
+import { cartStateType } from "../types";
 
 export const addDecimals = (num: number) => {
   return Number((Math.round(num * 100) / 100).toFixed(2));
 };
 
-// state type req.
-// @ts-ignore
-export const calcPrice = (state) => {
+export const calcPrice = (state: cartStateType) => {
   const prices = state.cartPrices;
   // Calc item price
   prices.itemsPrice = addDecimals(
     state.cartItems.reduce(
-      // item type required
-      // @ts-ignore
       (acc: number, cartItem) => acc + cartItem.price * cartItem.qty,
       0
     )
@@ -29,7 +25,7 @@ export const calcPrice = (state) => {
   // Montreal tax price - 15%
   prices.taxPrice = addDecimals(Number((0.15 * prices.itemsPrice).toFixed(2)));
 
-  // Total
+  // Total price
   prices.totalPrice = Number(
     (prices.itemsPrice + prices.deliverPrice + prices.taxPrice).toFixed(2)
   );
