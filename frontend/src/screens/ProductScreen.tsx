@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import Loader from "../components/Loader";
 import { useGetProductDetailsQuery } from "../slices/apiSlices/productsApiSlice";
-import { updateCart } from "../slices/feSlices/cartSlice";
+import { updateCartItem } from "../slices/feSlices/cartSlice";
 
 interface ProductScreenProps {}
 
@@ -30,16 +30,12 @@ const ProductScreen: React.FunctionComponent<ProductScreenProps> = () => {
     console.log("cartState (on loading)", cartState);
   }, []);
 
-  const onMinusBtnClick = () => {
-    console.log("product", product);
+  const handleAddProduct = () => {
+    dispatch(updateCartItem([product, 1]));
   };
 
-  const onPlusBtnClick = () => {
-    dispatch(updateCart(product));
-  };
-
-  const handleQtyChange = () => {
-    console.log("handleQtyChange");
+  const handleRemoveProduct = () => {
+    dispatch(updateCartItem([product, -1]));
   };
   return (
     <>
@@ -87,15 +83,28 @@ const ProductScreen: React.FunctionComponent<ProductScreenProps> = () => {
                   {product?.isInStock ? "In Stock" : "Temporarily Out of Stock"}
                 </p>
 
-                {product.isInStock && (
-                  <div>
-                    <div>Quantity:</div>
-                    <div>
-                      <button onClick={onMinusBtnClick}>-</button>
-                      <span>ABCD</span>
-                      <button onClick={onPlusBtnClick}>+</button>
-                    </div>
-                  </div>
+                {cartState.cartItems[0] ? (
+                  <>
+                    {product.isInStock && (
+                      <div>
+                        <div>Quantity:</div>
+                        <div>
+                          <button
+                            onClick={handleRemoveProduct}
+                            disabled={cartState.cartItems[0].qty === 0}
+                          >
+                            -
+                          </button>
+                          <span>{cartState.cartItems[0].qty}</span>
+                          <button onClick={handleAddProduct}>+</button>
+                        </div>
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  <>
+                    <button onClick={handleAddProduct}>Add to Cart</button>
+                  </>
                 )}
               </div>
             </div>
