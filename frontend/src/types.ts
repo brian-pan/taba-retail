@@ -31,6 +31,14 @@ export interface cartItemType {
   numberReviews?: number;
 }
 
+export interface cartPricesType {
+  itemsPrice: string | number;
+  deliverPrice: string | number;
+  taxPrice: string | number;
+  totalPrice: string | number;
+}
+
 export interface cartStateType {
   cartItems: cartItemType[];
+  cartPrices: cartPricesType;
 }
