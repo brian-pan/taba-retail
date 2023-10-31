@@ -5,7 +5,7 @@ export const addDecimals = (num: number) => {
 // state type req.
 // @ts-ignore
 export const calcPrice = (state) => {
-  const prices = state.prices;
+  const prices = state.cartPrices;
   // Calc item price
   prices.itemsPrice = addDecimals(
     state.cartItems.reduce(

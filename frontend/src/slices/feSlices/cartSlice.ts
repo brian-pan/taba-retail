@@ -7,7 +7,7 @@ const initialState = localStorage.getItem("cart")
   ? JSON.parse(localStorage.getItem("cart") as string)
   : {
       cartItems: [],
-      prices: {},
+      cartPrices: {},
     };
 
 const cartSlice = createSlice({
