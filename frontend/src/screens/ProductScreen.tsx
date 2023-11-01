@@ -39,17 +39,12 @@ const ProductScreen: React.FunctionComponent<ProductScreenProps> = () => {
     const cartItem = cartState.cartItems.find(
       (el: cartItemType) => el._id === productId
     );
-    console.log("findCartItemIndex:", cartState.cartItems.indexOf(cartItem));
     return cartState.cartItems.indexOf(cartItem);
   };
 
   // Watch cartItemIndex upon cartItems list length change
   useEffect(() => {
     findCartItemIndex();
-    console.log(
-      "cartState.cartItems[findCartItemIndex()]",
-      cartState.cartItems[findCartItemIndex()]
-    );
   }, [cartState.cartItems.length]);
 
   // Define boolean values
