@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Loader from "../components/Loader";
 import { useGetProductDetailsQuery } from "../slices/apiSlices/productsApiSlice";
 import { updateCartItem } from "../slices/feSlices/cartSlice";
+import { cartItemType } from "../types";
 
 interface ProductScreenProps {}
 
@@ -35,9 +36,19 @@ const ProductScreen: React.FunctionComponent<ProductScreenProps> = () => {
 
   // Find product index in cartItems list/arr
   const cartItemIndex = () => {
-    // cartState.cartItems();
-    console.log("cartItemIndex");
+    const cartItem = cartState.cartItems.find(
+      (el: cartItemType) => el._id === productId
+    );
+    const res = cartState.cartItems.indexOf(cartItem);
+    console.log("cartItemIndex:", res);
+
+    return res;
   };
+
+  // Watch cartItemIndex upon cartItems list length change
+  useEffect(() => {
+    cartItemIndex();
+  }, [cartState.cartItems.length]);
 
   // Handle cta events
   const handleAddProduct = () => {
