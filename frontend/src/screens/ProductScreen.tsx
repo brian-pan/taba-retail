@@ -35,20 +35,30 @@ const ProductScreen: React.FunctionComponent<ProductScreenProps> = () => {
   }, []);
 
   // Find product index in cartItems list/arr
-  const cartItemIndex = () => {
+  const findCartItemIndex = () => {
     const cartItem = cartState.cartItems.find(
       (el: cartItemType) => el._id === productId
     );
-    const res = cartState.cartItems.indexOf(cartItem);
-    console.log("cartItemIndex:", res);
-
-    return res;
+    console.log("findCartItemIndex:", cartState.cartItems.indexOf(cartItem));
+    return cartState.cartItems.indexOf(cartItem);
   };
 
   // Watch cartItemIndex upon cartItems list length change
   useEffect(() => {
-    cartItemIndex();
+    findCartItemIndex();
+    console.log(
+      "cartState.cartItems[findCartItemIndex()]",
+      cartState.cartItems[findCartItemIndex()]
+    );
   }, [cartState.cartItems.length]);
+
+  // Define boolean values
+  const isProductInCart = findCartItemIndex() !== -1;
+
+  const isMinusBtnDisabled =
+    !isProductInCart || cartState.cartItems[findCartItemIndex()].qty === 0;
+
+  const isQtyShow = !isMinusBtnDisabled;
 
   // Handle cta events
   const handleAddProduct = () => {
@@ -104,7 +114,7 @@ const ProductScreen: React.FunctionComponent<ProductScreenProps> = () => {
                   {product?.isInStock ? "In Stock" : "Temporarily Out of Stock"}
                 </p>
 
-                {cartState.cartItems[0] ? (
+                {isQtyShow ? (
                   <>
                     {product.isInStock && (
                       <div>
@@ -112,11 +122,13 @@ const ProductScreen: React.FunctionComponent<ProductScreenProps> = () => {
                         <div>
                           <button
                             onClick={handleRemoveProduct}
-                            disabled={cartState.cartItems[0].qty === 0}
+                            disabled={isMinusBtnDisabled}
                           >
                             -
                           </button>
-                          <span>{cartState.cartItems[0].qty}</span>
+                          <span>
+                            {cartState.cartItems[findCartItemIndex()].qty}
+                          </span>
                           <button onClick={handleAddProduct}>+</button>
                         </div>
                       </div>
