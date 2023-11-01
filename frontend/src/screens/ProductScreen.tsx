@@ -14,10 +14,12 @@ const ProductScreen: React.FunctionComponent<ProductScreenProps> = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  // Get global cart state from redux
+  const cartState = useSelector((state: any) => state.cart);
+
+  // Get product id from url
   // const productId = useParams().id; //alt code syntax
   const { id: productId } = useParams();
-
-  const cartState = useSelector((state: any) => state.cart);
 
   // Get prod dtls data from db
   const {
@@ -31,6 +33,13 @@ const ProductScreen: React.FunctionComponent<ProductScreenProps> = () => {
     console.log("cartState (on loading)", cartState);
   }, []);
 
+  // Find product index in cartItems list/arr
+  const cartItemIndex = () => {
+    // cartState.cartItems();
+    console.log("cartItemIndex");
+  };
+
+  // Handle cta events
   const handleAddProduct = () => {
     dispatch(updateCartItem([product, 1]));
   };
