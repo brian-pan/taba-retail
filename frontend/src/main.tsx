@@ -17,6 +17,7 @@ import RegisterScreen from "./screens/RegisterScreen.tsx";
 import LoginScreen from "./screens/LoginScreen.tsx";
 import ProfileScreen from "./screens/ProfileScreen.tsx";
 import ProductScreen from "./screens/ProductScreen.tsx";
+import CartScreen from "./screens/CartScreen.tsx";
 import "./assets/styles/index.scss";
 // import "./assets/styles/bootstrap.custom.css";
 
@@ -27,6 +28,7 @@ const router = createBrowserRouter(
       <Route path="/login" element={<LoginScreen />} />
       <Route path="/register" element={<RegisterScreen />} />
       <Route path="/products/:id" element={<ProductScreen />} />
+      <Route path="/cart" element={<CartScreen />} />
       {/* Private Routes: */}
       <Route path="" element={<PrivateRoute />}>
         <Route path="/profile" element={<ProfileScreen />} />

@@ -14,6 +14,7 @@ import { useLogoutMutation } from "../slices/apiSlices/usersApiSlice";
 import { clearCredentials } from "../slices/feSlices/authenticationSlice";
 import logo from "../assets/images/logo/logo-old.png";
 import "../assets/styles/components/Header.scss";
+import { cartItemType } from "../types";
 
 interface HeaderProps {
   logoName: string;
@@ -23,6 +24,7 @@ const Header: React.FunctionComponent<HeaderProps> = (props) => {
   const [isDropDownOpen, setIsDropDownOpen] = useState<boolean>(false);
 
   const { userInfo } = useSelector((state: any) => state.authentication);
+  const { cartItems } = useSelector((state: any) => state.cart);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -108,9 +110,17 @@ const Header: React.FunctionComponent<HeaderProps> = (props) => {
       ) : (
         <>
           <div className="header__links">
-            <Link className="header__link header__link--sign-up" to="/register">
+            <Link className="header__link header__link--sign-up" to="/cart">
               <FaShoppingCart className="header__link-icon header__link-icon--cart" />
               Cart
+              {cartItems.length > 0 && (
+                <span>
+                  {cartItems.reduce(
+                    (acc: number, curr: cartItemType) => acc + curr.qty,
+                    0
+                  )}
+                </span>
+              )}
             </Link>
             <Link className="header__link header__link--sign-in" to="/login">
               <span>
