@@ -8,30 +8,33 @@ $relative-col-width--right: calc(100% - $relative-col-width--left);
 
 .cart-screen__item {
   align-items: center;
-  display: flex;
+  display: grid;
   margin-bottom: 5px;
+  grid-template-columns: 20% auto 12% 10% 8%;
+  justify-items: start;
+  align-items: center;
 }
 
 .cart-screen__item-image {
-  margin: 0 5px;
+  border: 1px solid red;
   width: calc($font-size * 6);
   // height: calc($font-size * 6);
 }
 
 .cart-screen__item-name {
+  border: 1px solid green;
   display: block;
-  margin: 0 5px;
 }
 
 .cart-screen__item-price {
-  margin: 0 5px;
+  border: 1px solid blueviolet;
 }
 
 .cart-screen__item-qty-wrapper {
+  border: 1px solid tan;
   display: flex;
-  margin: 0 5px;
 }
 
 .cart-screen__item-btn {
-  margin: 0 5px;
+  border: 1px solid sienna;
 }
