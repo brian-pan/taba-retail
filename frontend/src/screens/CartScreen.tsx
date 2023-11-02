@@ -3,8 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { FaTrash } from "react-icons/fa";
-import Message from "../components/Message";
 import { cartItemType } from "../types";
+import "../assets/styles/screens/CartScreen.scss";
 
 interface CartScreenProps {}
 
@@ -51,9 +51,9 @@ const CartScreen: React.FunctionComponent<CartScreenProps> = (props) => {
                   <p className="cart-screen__item-price">${cartItem.price}</p>
 
                   <div className="cart-screen__item-qty-wrapper">
-                    <div className="cart-screen__item-qty__label">
+                    {/* <div className="cart-screen__item-qty__label">
                       Quantity:
-                    </div>
+                    </div> */}
                     <div className="cart-screen__item-qty__btns">
                       <button
                         className="cart-screen__item-qty__btn cart-screen__item-qty__btn--minus"
