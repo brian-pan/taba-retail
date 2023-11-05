@@ -1,9 +1,16 @@
 @import "../setups/variables.scss";
+
 $relative-col-width--left: 60%;
 $relative-col-width--right: calc(100% - $relative-col-width--left);
 
 .cart-screen__items {
-  width: $relative-col-width--left;
+  width: 100%;
+}
+
+@media #{$bp-tablet} {
+  .cart-screen__items {
+    width: $relative-col-width--left;
+  }
 }
 
 .cart-screen__item {
