@@ -15,10 +15,15 @@ const CartScreen: React.FunctionComponent<CartScreenProps> = (props) => {
   // Get global cart state
   // @ts-ignore
   const cartState = useSelector((state) => state.cart);
-  const { cartItems } = cartState;
+  const { cartItems, cartPrices } = cartState;
 
   // Define booleans
   const isCartEmpty = cartItems.length === 0;
+
+  const numItems = cartItems.reduce(
+    (acc: number, item: cartItemType) => acc + item.qty,
+    0
+  );
 
   return (
     <div className="cart-screen-wrapper">
@@ -34,7 +39,7 @@ const CartScreen: React.FunctionComponent<CartScreenProps> = (props) => {
           <>
             <div className="cart-screen__items">
               {cartItems.map((cartItem: cartItemType) => (
-                <div className="cart-screen__item">
+                <div className="cart-screen__item" key={cartItem._id}>
                   <img
                     className="cart-screen__item-image"
                     src={cartItem.image}
@@ -75,6 +80,13 @@ const CartScreen: React.FunctionComponent<CartScreenProps> = (props) => {
                   </button>
                 </div>
               ))}
+            </div>
+            <div className="cart-screen__totals">
+              <h2>
+                Subtotal of ({numItems}) item{numItems > 1 && "s"}: $
+                {cartPrices.itemsPrice}
+              </h2>
+              <button>Proceed to Checkout</button>
             </div>
           </>
         )}
