@@ -2,13 +2,14 @@ import * as React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import { FaTrash } from "react-icons/fa";
+import { updateCartItem } from "../slices/feSlices/cartSlice";
 import { cartItemType } from "../types";
+import { FaTrash } from "react-icons/fa";
 import "../assets/styles/screens/CartScreen.scss";
 
 interface CartScreenProps {}
 
-const CartScreen: React.FunctionComponent<CartScreenProps> = (props) => {
+const CartScreen: React.FunctionComponent<CartScreenProps> = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -25,6 +26,13 @@ const CartScreen: React.FunctionComponent<CartScreenProps> = (props) => {
     0
   );
 
+  const handleAddCartItem = (cartItem: cartItemType) => {
+    dispatch(updateCartItem([cartItem, 1]));
+  };
+
+  const handleRemoveCartItem = (cartItem: cartItemType) => {
+    dispatch(updateCartItem([cartItem, -1]));
+  };
   return (
     <div className="cart-screen-wrapper">
       <h1 className="cart-screen__heading">Shopping Cart</h1>
@@ -62,6 +70,7 @@ const CartScreen: React.FunctionComponent<CartScreenProps> = (props) => {
                     <div className="cart-screen__item-qty__btns">
                       <button
                         className="cart-screen__item-qty__btn cart-screen__item-qty__btn--minus"
+                        onClick={() => handleRemoveCartItem(cartItem)}
                         disabled={false}
                       >
                         -
@@ -69,7 +78,10 @@ const CartScreen: React.FunctionComponent<CartScreenProps> = (props) => {
                       <span className="cart-screen__item-qty__btn-label">
                         {cartItem.qty}
                       </span>
-                      <button className="cart-screen__item-qty__btn cart-screen__item-qty__btn--plus">
+                      <button
+                        onClick={() => handleAddCartItem(cartItem)}
+                        className="cart-screen__item-qty__btn cart-screen__item-qty__btn--plus"
+                      >
                         +
                       </button>
                     </div>
