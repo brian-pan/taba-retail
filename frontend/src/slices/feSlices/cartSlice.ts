@@ -2,6 +2,7 @@ import { createSlice, current } from "@reduxjs/toolkit";
 
 // import { ProductType } from "../../types";
 import { calcPrice } from "../../utilities/cartUtilities";
+import { cartItemType } from "../../types";
 
 const initialState = localStorage.getItem("cart")
   ? JSON.parse(localStorage.getItem("cart") as string)
@@ -18,30 +19,28 @@ const cartSlice = createSlice({
       const item = action.payload[0];
       const numberChanged = action.payload[1];
       // Init check and remove cartItem with qty 0
-      // @ts-ignore
-      state.cartItems = state.cartItems.filter((el) => el.qty > 0);
+      state.cartItems = state.cartItems.filter(
+        (cartItem: cartItemType) => cartItem.qty > 0
+      );
 
       // Find if product already existed in cart
-      // @ts-ignore
-      const existItem = state.cartItems.find((el) => {
-        return el._id === item._id;
+      const existItem = state.cartItems.find((cartItem: cartItemType) => {
+        return cartItem._id === item._id;
       });
 
       // Update product if existed, add to cart if not
       if (existItem) {
-        // @ts-ignore
-        state.cartItems = state.cartItems.map((el) => {
-          if (el._id === existItem._id) {
-            return { ...el, qty: el.qty + numberChanged };
+        state.cartItems = state.cartItems.map((cartItem: cartItemType) => {
+          if (cartItem._id === existItem._id) {
+            return { ...cartItem, qty: cartItem.qty + numberChanged };
           } else {
-            return el;
+            return cartItem;
           }
         });
 
         // Handle decrease cart item amount to zero
         const updatedItem = state.cartItems.find(
-          // @ts-ignore
-          (cartItem) => cartItem._id === item._id
+          (cartItem: cartItemType) => cartItem._id === item._id
         );
         // Remove existed cart item if qty is 0
         if (updatedItem.qty === 0) {
