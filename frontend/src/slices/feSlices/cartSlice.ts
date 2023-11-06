@@ -15,6 +15,7 @@ const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
+    // Fn add, del, remove item in cart
     updateCartItem: (state, action) => {
       const item = action.payload[0];
       const numberChanged = action.payload[1];
@@ -61,10 +62,22 @@ const cartSlice = createSlice({
 
       return state;
     },
+    // Fn delete single item from cart
+    deleteFromCart: (state, action) => {
+      state.cartItems = state.cartItems.filter(
+        (cartItem: cartItemType) => cartItem._id !== action.payload
+      );
+
+      calcPrice(state);
+
+      localStorage.setItem("cart", JSON.stringify(state));
+
+      return state;
+    },
   },
 });
 
 // export an action
-export const { updateCartItem } = cartSlice.actions;
+export const { updateCartItem, deleteFromCart } = cartSlice.actions;
 
 export default cartSlice.reducer;

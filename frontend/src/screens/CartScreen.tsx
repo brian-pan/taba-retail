@@ -2,7 +2,7 @@ import * as React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import { updateCartItem } from "../slices/feSlices/cartSlice";
+import { deleteFromCart, updateCartItem } from "../slices/feSlices/cartSlice";
 import { cartItemType } from "../types";
 import { FaTrash } from "react-icons/fa";
 import "../assets/styles/screens/CartScreen.scss";
@@ -32,6 +32,10 @@ const CartScreen: React.FunctionComponent<CartScreenProps> = () => {
 
   const handleRemoveCartItem = (cartItem: cartItemType) => {
     dispatch(updateCartItem([cartItem, -1]));
+  };
+
+  const handleDeleteCartItem = (id: string) => {
+    dispatch(deleteFromCart(id));
   };
   return (
     <div className="cart-screen-wrapper">
@@ -87,7 +91,10 @@ const CartScreen: React.FunctionComponent<CartScreenProps> = () => {
                     </div>
                   </div>
 
-                  <button className="cart-screen__item-btn">
+                  <button
+                    className="cart-screen__item-btn"
+                    onClick={() => handleDeleteCartItem(cartItem._id)}
+                  >
                     <FaTrash />
                   </button>
                 </div>
