@@ -37,6 +37,10 @@ const CartScreen: React.FunctionComponent<CartScreenProps> = () => {
   const handleDeleteCartItem = (id: string) => {
     dispatch(deleteFromCart(id));
   };
+
+  const handleCheckout = () => {
+    navigate("/login?redirect=/shipping");
+  };
   return (
     <div className="cart-screen-wrapper">
       <h1 className="cart-screen__heading">Shopping Cart</h1>
@@ -105,7 +109,7 @@ const CartScreen: React.FunctionComponent<CartScreenProps> = () => {
                 Subtotal of ({numItems}) item{numItems > 1 && "s"}: $
                 {cartPrices.itemsPrice}
               </h2>
-              <button>Proceed to Checkout</button>
+              <button onClick={handleCheckout}>Proceed to Checkout</button>
             </div>
           </>
         )}
