@@ -17,6 +17,9 @@ const CartScreen: React.FunctionComponent<CartScreenProps> = () => {
   // @ts-ignore
   const cartState = useSelector((state) => state.cart);
   const { cartItems, cartPrices } = cartState;
+  //@ts-ignore
+  const authState = useSelector((state) => state.authentication);
+  const { userInfo } = authState;
 
   // Define booleans
   const isCartEmpty = cartItems.length === 0;
@@ -39,7 +42,7 @@ const CartScreen: React.FunctionComponent<CartScreenProps> = () => {
   };
 
   const handleCheckout = () => {
-    navigate("/login?redirect=/shipping");
+    navigate(`${userInfo ? "/shipping" : "/login"}`);
   };
   return (
     <div className="cart-screen-wrapper">
