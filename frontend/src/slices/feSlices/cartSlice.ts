@@ -9,6 +9,8 @@ const initialState = localStorage.getItem("cart")
   : {
       cartItems: [],
       cartPrices: {},
+      shippingAddress: {},
+      paymentMethod: "Paypal",
     };
 
 const cartSlice = createSlice({
@@ -68,6 +70,14 @@ const cartSlice = createSlice({
         (cartItem: cartItemType) => cartItem._id !== action.payload
       );
 
+      calcPrice(state);
+
+      localStorage.setItem("cart", JSON.stringify(state));
+
+      return state;
+    },
+    saveShippingAddress: (state, action) => {
+      state.shippingAddress = action.payload;
       calcPrice(state);
 
       localStorage.setItem("cart", JSON.stringify(state));
