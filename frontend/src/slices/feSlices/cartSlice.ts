@@ -1,7 +1,7 @@
 import { createSlice, current } from "@reduxjs/toolkit";
 
 // import { ProductType } from "../../types";
-import { calcPrice } from "../../utilities/cartUtilities";
+import { updateState } from "../../utilities/cartUtilities";
 import { cartItemType } from "../../types";
 
 const initialState = localStorage.getItem("cart")
@@ -53,41 +53,24 @@ const cartSlice = createSlice({
         state.cartItems = [...state.cartItems, { ...item, qty: 1 }];
       }
 
-      // Calculate prices
-      calcPrice(state);
-
-      // Save cart items to local storage
-      localStorage.setItem("cart", JSON.stringify(state));
-
-      // Watch state change
-      console.log(current(state));
-
-      return state;
+      return updateState(state);
     },
     // Fn delete single item from cart
     deleteFromCart: (state, action) => {
       state.cartItems = state.cartItems.filter(
         (cartItem: cartItemType) => cartItem._id !== action.payload
       );
-
-      calcPrice(state);
-
-      localStorage.setItem("cart", JSON.stringify(state));
-
-      return state;
+      return updateState(state);
     },
     saveShippingAddress: (state, action) => {
       state.shippingAddress = action.payload;
-      calcPrice(state);
-
-      localStorage.setItem("cart", JSON.stringify(state));
-
-      return state;
+      return updateState(state);
     },
   },
 });
 
 // export an action
-export const { updateCartItem, deleteFromCart } = cartSlice.actions;
+export const { updateCartItem, deleteFromCart, saveShippingAddress } =
+  cartSlice.actions;
 
 export default cartSlice.reducer;

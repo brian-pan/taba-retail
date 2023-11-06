@@ -1,3 +1,5 @@
+import { current } from "@reduxjs/toolkit";
+
 import { cartStateType } from "../types";
 
 export const addDecimals = (num: number) => {
@@ -29,6 +31,19 @@ export const calcPrice = (state: cartStateType) => {
   prices.totalPrice = Number(
     (prices.itemsPrice + prices.deliverPrice + prices.taxPrice).toFixed(2)
   );
+
+  return state;
+};
+
+export const updateState = (state: cartStateType) => {
+  // Calculate prices
+  calcPrice(state);
+
+  // Save cart items to local storage
+  localStorage.setItem("cart", JSON.stringify(state));
+
+  // Watch state change
+  console.log(current(state));
 
   return state;
 };
