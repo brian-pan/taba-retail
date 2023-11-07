@@ -8,7 +8,6 @@ import {
 } from "react-router-dom";
 import store from "./store.ts";
 import { Provider } from "react-redux";
-// import "bootstrap/dist/css/bootstrap.min.css";
 
 import App from "./App.tsx";
 import PrivateRoute from "./components/PrivateRoute.tsx";
@@ -18,7 +17,9 @@ import LoginScreen from "./screens/LoginScreen.tsx";
 import ProfileScreen from "./screens/ProfileScreen.tsx";
 import ProductScreen from "./screens/ProductScreen.tsx";
 import CartScreen from "./screens/CartScreen.tsx";
+import CheckoutScreen from "./screens/CheckoutScreen.tsx";
 import "./assets/styles/index.scss";
+// import "bootstrap/dist/css/bootstrap.min.css";
 // import "./assets/styles/bootstrap.custom.css";
 
 const router = createBrowserRouter(
@@ -32,6 +33,7 @@ const router = createBrowserRouter(
       {/* Private Routes: */}
       <Route path="" element={<PrivateRoute />}>
         <Route path="/profile" element={<ProfileScreen />} />
+        <Route path="/checkout" element={<CheckoutScreen />} />
       </Route>
     </Route>
   )
