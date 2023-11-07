@@ -42,7 +42,7 @@ const CartScreen: React.FunctionComponent<CartScreenProps> = () => {
   };
 
   const handleCheckout = () => {
-    navigate(`${userInfo ? "/shipping" : "/login"}`);
+    navigate(`${userInfo ? "/checkout" : "/login"}`);
   };
   return (
     <div className="cart-screen-wrapper">

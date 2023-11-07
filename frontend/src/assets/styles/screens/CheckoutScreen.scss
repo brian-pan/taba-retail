@@ -1,0 +1,7 @@
+.checkout-screen__switcher {
+  padding: 22px 30px;
+
+  &.checkout-screen__switcher--active {
+    border: 2px solid black;
+  }
+}

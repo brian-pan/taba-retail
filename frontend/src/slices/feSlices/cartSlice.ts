@@ -1,4 +1,4 @@
-import { createSlice, current } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 // import { ProductType } from "../../types";
 import { updateState } from "../../utilities/cartUtilities";
@@ -9,8 +9,9 @@ const initialState = localStorage.getItem("cart")
   : {
       cartItems: [],
       cartPrices: {},
+      isPickUp: true,
       shippingAddress: {},
-      paymentMethod: "Paypal",
+      paymentMethod: "PayPal",
     };
 
 const cartSlice = createSlice({
@@ -62,15 +63,25 @@ const cartSlice = createSlice({
       );
       return updateState(state);
     },
+    // Fn set user shipping address if applicable
     saveShippingAddress: (state, action) => {
       state.shippingAddress = action.payload;
       return updateState(state);
+    },
+    // Fn upd bool state whether user requires deliver
+    setDeliverMethod: (state, action) => {
+      state.isPickUp = action.payload;
+      localStorage.setItem("cart", JSON.stringify(state));
     },
   },
 });
 
 // export an action
-export const { updateCartItem, deleteFromCart, saveShippingAddress } =
-  cartSlice.actions;
+export const {
+  updateCartItem,
+  deleteFromCart,
+  saveShippingAddress,
+  setDeliverMethod,
+} = cartSlice.actions;
 
 export default cartSlice.reducer;
