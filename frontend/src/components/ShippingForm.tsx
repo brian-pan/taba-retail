@@ -4,46 +4,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Select from "react-select";
 
+import { areaOptions } from "../assets/areaOptions";
+
 interface ShippingFormProps {}
 
-const ShippingForm: React.FunctionComponent<ShippingFormProps> = (props) => {
+const ShippingForm: React.FunctionComponent<ShippingFormProps> = () => {
   const [address, setAddress] = useState("");
   const [area, setArea] = useState("");
   const [postalCode, setPostalCode] = useState("");
 
   // @ts-ignore
   const { isPickUp, shippingAddress } = useSelector((state) => state.cart);
-
-  const areaOptions = [
-    {
-      value: "Ville-Marie",
-      label: "Ville-Marie",
-    },
-    {
-      value: "Plateau-Mont-Royal",
-      label: "Plateau-Mont-Royal",
-    },
-    {
-      value: "Outremont",
-      label: "Outremont",
-    },
-    {
-      value: "Westmount",
-      label: "Westmount",
-    },
-    {
-      value: "Sud-Ouest",
-      label: "Sud-Ouest",
-    },
-    {
-      value: "Côte-des-Neiges",
-      label: "Côte-des-Neiges",
-    },
-    {
-      value: "Mont-Royal",
-      label: "Mont-Royal",
-    },
-  ];
 
   // local state change when typing
   // watcher debounce save global state after 1s no typing

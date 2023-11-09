@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
 import ShippingForm from "../components/ShippingForm";
+import UserInfoForm from "../components/UserInfoForm";
 import { setDeliverMethod } from "../slices/feSlices/cartSlice";
 import "../assets/styles/screens/CheckoutScreen.scss";
 
@@ -43,6 +44,7 @@ const CheckoutScreen: React.FunctionComponent<CheckoutScreenProps> = () => {
           </button>
         </div>
         {!isPickUp && <ShippingForm />}
+        <UserInfoForm />
       </div>
     </div>
   );
