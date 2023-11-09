@@ -3,17 +3,13 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
+import ShippingForm from "../components/ShippingForm";
 import { setDeliverMethod } from "../slices/feSlices/cartSlice";
 import "../assets/styles/screens/CheckoutScreen.scss";
 
 interface CheckoutScreenProps {}
 
 const CheckoutScreen: React.FunctionComponent<CheckoutScreenProps> = () => {
-  const [address, setAddress] = useState("");
-  const [city, setCity] = useState("");
-  const [postalCode, setPostalCode] = useState("");
-  const [country, setCountry] = useState("");
-
   // @ts-ignore
   const { isPickUp } = useSelector((state) => state.cart);
 
@@ -46,6 +42,7 @@ const CheckoutScreen: React.FunctionComponent<CheckoutScreenProps> = () => {
             Deliver
           </button>
         </div>
+        <ShippingForm />
       </div>
     </div>
   );

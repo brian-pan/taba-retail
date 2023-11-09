@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import "../assets/styles/components/Form.scss";
+import { useSelector } from "react-redux";
 
 interface FormProps {
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
