@@ -57,10 +57,14 @@ const UserInfoForm: React.FunctionComponent<UserInfoFormProps> = () => {
             <input
               className="form-input__phone-number"
               id="formPhoneNumber"
+              name="phone"
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
-              type="text"
+              type="tel"
               placeholder="Phone Number"
+              pattern="([0-9]{3})[0-9]{3}-[0-9]{4}"
+              maxLength={10}
+              required
             />
           </div>
           <div className="form-group">
