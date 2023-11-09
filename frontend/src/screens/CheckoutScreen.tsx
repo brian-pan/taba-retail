@@ -42,7 +42,7 @@ const CheckoutScreen: React.FunctionComponent<CheckoutScreenProps> = () => {
             Deliver
           </button>
         </div>
-        <ShippingForm />
+        {!isPickUp && <ShippingForm />}
       </div>
     </div>
   );
