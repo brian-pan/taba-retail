@@ -48,7 +48,7 @@ const CheckoutScreen: React.FunctionComponent<CheckoutScreenProps> = () => {
       </div>
       <div className="checkout-screen__cta-wrapper">
         <Link className="checkout-screen__cta" to="/payment">
-          Next
+          Save & Continue
         </Link>
       </div>
     </div>
