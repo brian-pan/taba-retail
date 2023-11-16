@@ -9,9 +9,12 @@ const initialState = localStorage.getItem("cart")
   : {
       cartItems: [],
       cartPrices: {},
-      isPickUp: true,
-      shippingAddress: {},
-      paymentMethod: "PayPal",
+      cartOrderInfo: {
+        isPickUp: true,
+        shippingAddress: {},
+        personalInfo: {},
+        paymentMethod: "PayPal",
+      },
     };
 
 const cartSlice = createSlice({
