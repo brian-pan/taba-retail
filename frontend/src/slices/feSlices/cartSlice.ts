@@ -73,7 +73,7 @@ const cartSlice = createSlice({
     },
     // Fn upd bool state whether user requires deliver
     setDeliverMethod: (state, action) => {
-      state.isPickUp = action.payload;
+      state.cartOrderInfo.isPickUp = action.payload;
       localStorage.setItem("cart", JSON.stringify(state));
     },
   },
