@@ -18,6 +18,7 @@ import ProfileScreen from "./screens/ProfileScreen.tsx";
 import ProductScreen from "./screens/ProductScreen.tsx";
 import CartScreen from "./screens/CartScreen.tsx";
 import CheckoutScreen from "./screens/CheckoutScreen.tsx";
+import PaymentScreen from "./screens/PaymentScreen.tsx";
 import "./assets/styles/index.scss";
 // import "bootstrap/dist/css/bootstrap.min.css";
 // import "./assets/styles/bootstrap.custom.css";
@@ -34,6 +35,7 @@ const router = createBrowserRouter(
       <Route path="" element={<PrivateRoute />}>
         <Route path="/profile" element={<ProfileScreen />} />
         <Route path="/checkout" element={<CheckoutScreen />} />
+        <Route path="/payment" element={<PaymentScreen />} />
       </Route>
     </Route>
   )
