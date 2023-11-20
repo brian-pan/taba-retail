@@ -11,7 +11,9 @@ const PaymentScreen: React.FunctionComponent<PaymentScreenProps> = (props) => {
           Back
         </Link>
       </div>
-      <div></div>
+      <div className="payment-screen__body-wrapper">
+        <h1 className="payment-screen__heading">Payment</h1>
+      </div>
     </div>
   );
 };
