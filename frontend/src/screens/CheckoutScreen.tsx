@@ -14,6 +14,7 @@ const CheckoutScreen: React.FunctionComponent<CheckoutScreenProps> = () => {
   // @ts-ignore
   const { cartOrderInfo } = useSelector((state) => state.cart);
   const { isPickUp } = cartOrderInfo;
+
   const dispatch = useDispatch();
 
   return (

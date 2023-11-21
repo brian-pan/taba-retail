@@ -1,10 +1,10 @@
 import * as React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import Select from "react-select";
 
 import { areaOptions } from "../assets/areaOptions";
+import { saveShippingAddress } from "../slices/feSlices/cartSlice";
 
 interface ShippingFormProps {}
 
@@ -14,7 +14,17 @@ const ShippingForm: React.FunctionComponent<ShippingFormProps> = () => {
   const [postalCode, setPostalCode] = useState("");
 
   // @ts-ignore
-  const { isPickUp, shippingAddress } = useSelector((state) => state.cart);
+  const { cartOrderInfo } = useSelector((state) => state.cart);
+
+  const dispatch = useDispatch();
+
+  const handleOnChange = () => {
+    dispatch(saveShippingAddress({ address, postalCode, area }));
+  };
+
+  useEffect(() => {
+    handleOnChange();
+  }, [address, area, postalCode]);
 
   // local state change when typing
   // watcher debounce save global state after 1s no typing
@@ -33,9 +43,9 @@ const ShippingForm: React.FunctionComponent<ShippingFormProps> = () => {
               className="form-input__address"
               id="formAddress"
               value={address}
-              onChange={(e) => setAddress(e.target.value)}
               type="text"
               placeholder="Deliver Address"
+              onChange={(e) => setAddress(e.target.value)}
             />
           </div>
 
@@ -80,7 +90,7 @@ const ShippingForm: React.FunctionComponent<ShippingFormProps> = () => {
               PostalCode
             </label>
             <input
-              className="form-input__PostalCode"
+              className="form-input__postalCode"
               id="formPostalCode"
               type="text"
               value={postalCode}

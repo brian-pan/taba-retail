@@ -68,7 +68,7 @@ const cartSlice = createSlice({
     },
     // Fn set user shipping address if applicable
     saveShippingAddress: (state, action) => {
-      state.shippingAddress = action.payload;
+      state.cartOrderInfo.shippingAddress = action.payload;
       return updateState(state);
     },
     // Fn upd bool state whether user requires deliver
