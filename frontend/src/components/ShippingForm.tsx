@@ -1,7 +1,6 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 
 import { areaOptions } from "../assets/areaOptions";
 import { saveShippingAddress } from "../slices/feSlices/cartSlice";
@@ -9,12 +8,12 @@ import { saveShippingAddress } from "../slices/feSlices/cartSlice";
 interface ShippingFormProps {}
 
 const ShippingForm: React.FunctionComponent<ShippingFormProps> = () => {
+  // @ts-ignore
+  const { cartOrderInfo } = useSelector((state) => state.cart);
+
   const [address, setAddress] = useState("");
   const [area, setArea] = useState("");
   const [postalCode, setPostalCode] = useState("");
-
-  // @ts-ignore
-  const { cartOrderInfo } = useSelector((state) => state.cart);
 
   const dispatch = useDispatch();
 
