@@ -1,15 +1,44 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
+import { savePaymentMethod } from "../slices/feSlices/cartSlice";
 
 interface PaymentScreenProps {}
 
 const PaymentScreen: React.FunctionComponent<PaymentScreenProps> = () => {
-  const [paymentMethod, setPaymentMethod] = useState("card");
+  // @ts-ignore
+  const { cartOrderInfo } = useSelector((state) => state.cart);
+  const { isPickUp, shippingAddress, paymentMethod } = cartOrderInfo;
 
+  const [method, setMethod] = useState("card");
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  // Redirect to checkout page if not pickup and addr is invalid
   useEffect(() => {
-    console.log(paymentMethod);
+    // later add shipping address validator
+    if (!isPickUp && !shippingAddress) {
+      navigate("/checkout");
+    }
+  }, [isPickUp, shippingAddress, navigate]);
+
+  // watcher
+  useEffect(() => {
+    console.log("global", paymentMethod);
   }, [paymentMethod]);
+  // watcher
+  useEffect(() => {
+    console.log("local", method);
+  }, [method]);
+
+  // Fn handle submit
+  const handleSubmit = () => {
+    dispatch(savePaymentMethod(method));
+  };
 
   return (
     <div className="payment-screen-wrapper">
@@ -30,7 +59,7 @@ const PaymentScreen: React.FunctionComponent<PaymentScreenProps> = () => {
                 name="paymentMethod"
                 value="card"
                 // checked
-                onChange={(e) => setPaymentMethod(e.target.value)}
+                onChange={(e) => setMethod(e.target.value)}
               />
               <label
                 className="form-label form-label__card"
@@ -46,7 +75,7 @@ const PaymentScreen: React.FunctionComponent<PaymentScreenProps> = () => {
                 type="radio"
                 name="paymentMethod"
                 value="weChat"
-                onChange={(e) => setPaymentMethod(e.target.value)}
+                onChange={(e) => setMethod(e.target.value)}
               />
               <label
                 className="form-label form-label__weChat"
@@ -62,7 +91,7 @@ const PaymentScreen: React.FunctionComponent<PaymentScreenProps> = () => {
                 type="radio"
                 name="paymentMethod"
                 value="Ali"
-                onChange={(e) => setPaymentMethod(e.target.value)}
+                onChange={(e) => setMethod(e.target.value)}
               />
               <label
                 className="form-label form-label__ali"
@@ -73,9 +102,15 @@ const PaymentScreen: React.FunctionComponent<PaymentScreenProps> = () => {
             </div>
           </form>
         </div>
+        <br />
+        <div className="payment-screen__payment"></div>
       </div>
       <div className="payment-screen__next-cta-wrapper">
-        <Link className="payment-screen__back-cta" to="/checkout">
+        <Link
+          className="payment-screen__back-cta"
+          to="/placeOrder"
+          onClick={handleSubmit}
+        >
           Save & Continue
         </Link>
       </div>
