@@ -13,9 +13,11 @@ const UserInfoForm: React.FunctionComponent<UserInfoFormProps> = () => {
   const { cartOrderInfo } = useSelector((state) => state.cart);
   const { personalInfo } = cartOrderInfo;
 
-  const [fullName, setFullName] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [notes, setNotes] = useState("");
+  const [fullName, setFullName] = useState(personalInfo.fullName || "");
+  const [phoneNumber, setPhoneNumber] = useState(
+    personalInfo.phoneNumber || ""
+  );
+  const [notes, setNotes] = useState(personalInfo.notes || "");
 
   const dispatch = useDispatch();
 
