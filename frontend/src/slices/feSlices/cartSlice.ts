@@ -84,6 +84,12 @@ const cartSlice = createSlice({
       localStorage.setItem("cart", JSON.stringify(state));
       return state;
     },
+    // Fn save payment method if applicable
+    savePaymentMethod: (state, action) => {
+      state.cartOrderInfo.paymentMethod = action.payload;
+      localStorage.setItem("cart", JSON.stringify(state));
+      return state;
+    },
   },
 });
 
@@ -94,6 +100,7 @@ export const {
   saveShippingAddress,
   savePersonalInfo,
   setDeliverMethod,
+  savePaymentMethod,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;
