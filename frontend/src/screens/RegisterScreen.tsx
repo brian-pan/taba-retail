@@ -12,11 +12,6 @@ import "../assets/styles/screens/RegisterScreen.scss";
 
 interface RegisterScreenProps {}
 
-// interface FormData {
-//   email: string;
-//   password: string;
-// }
-
 const RegisterScreen: React.FunctionComponent<RegisterScreenProps> = () => {
   const [userName, setUserName] = useState<string>("");
   const [email, setEmail] = useState<string>("");

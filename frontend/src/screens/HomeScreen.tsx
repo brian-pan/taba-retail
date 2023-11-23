@@ -29,6 +29,7 @@ const HomeScreen: React.FunctionComponent<HomeScreenProps> = () => {
       {isLoading && <Loader />}
       {error && (
         <Message variant="danger">
+          {/* @ts-ignore */}
           {error?.data?.message || error.error}
         </Message>
       )}

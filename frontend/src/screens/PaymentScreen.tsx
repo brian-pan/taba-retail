@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 interface PaymentScreenProps {}
 
-const PaymentScreen: React.FunctionComponent<PaymentScreenProps> = (props) => {
+const PaymentScreen: React.FunctionComponent<PaymentScreenProps> = () => {
   return (
     <div className="payment-screen-wrapper">
       <div className="payment-screen__back-cta-wrapper">
