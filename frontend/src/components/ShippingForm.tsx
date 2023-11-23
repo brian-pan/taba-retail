@@ -10,10 +10,13 @@ interface ShippingFormProps {}
 const ShippingForm: React.FunctionComponent<ShippingFormProps> = () => {
   // @ts-ignore
   const { cartOrderInfo } = useSelector((state) => state.cart);
+  const { shippingAddress } = cartOrderInfo;
 
-  const [address, setAddress] = useState("");
-  const [area, setArea] = useState("");
-  const [postalCode, setPostalCode] = useState("");
+  const [address, setAddress] = useState(shippingAddress.address || "");
+  const [area, setArea] = useState(shippingAddress.area || "");
+  const [postalCode, setPostalCode] = useState(
+    shippingAddress.postalCode || ""
+  );
 
   const dispatch = useDispatch();
 
