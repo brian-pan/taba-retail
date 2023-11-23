@@ -2,6 +2,8 @@ import * as React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
+import { savePersonalInfo } from "../slices/feSlices/cartSlice";
+
 interface UserInfoFormProps {}
 
 const UserInfoForm: React.FunctionComponent<UserInfoFormProps> = () => {
@@ -14,6 +16,16 @@ const UserInfoForm: React.FunctionComponent<UserInfoFormProps> = () => {
   const [fullName, setFullName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [notes, setNotes] = useState("");
+
+  const dispatch = useDispatch();
+
+  const handleOnChange = () => {
+    dispatch(savePersonalInfo({ fullName, phoneNumber, notes }));
+  };
+
+  useEffect(() => {
+    handleOnChange();
+  }, [fullName, phoneNumber, notes]);
 
   // local state change when typing
   // watcher debounce save global state after 1s no typing

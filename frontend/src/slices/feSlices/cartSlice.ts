@@ -92,6 +92,7 @@ export const {
   updateCartItem,
   deleteFromCart,
   saveShippingAddress,
+  savePersonalInfo,
   setDeliverMethod,
 } = cartSlice.actions;
 
