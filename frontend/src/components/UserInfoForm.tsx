@@ -1,17 +1,19 @@
 import * as React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 
 interface UserInfoFormProps {}
 
 const UserInfoForm: React.FunctionComponent<UserInfoFormProps> = () => {
+  // @ts-ignore
+  const { userInfo } = useSelector((state) => state.authentication);
+  // @ts-ignore
+  const { cartOrderInfo } = useSelector((state) => state.cart);
+  const { personalInfo } = cartOrderInfo;
+
   const [fullName, setFullName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [notes, setNotes] = useState("");
-
-  // @ts-ignore
-  const { userInfo } = useSelector((state) => state.authentication);
 
   // local state change when typing
   // watcher debounce save global state after 1s no typing

@@ -69,12 +69,20 @@ const cartSlice = createSlice({
     // Fn set user shipping address if applicable
     saveShippingAddress: (state, action) => {
       state.cartOrderInfo.shippingAddress = action.payload;
-      return updateState(state);
+      localStorage.setItem("cart", JSON.stringify(state));
+      return state;
+    },
+    // Fn save personal info if applicable
+    savePersonalInfo: (state, action) => {
+      state.cartOrderInfo.personalInfo = action.payload;
+      localStorage.setItem("cart", JSON.stringify(state));
+      return state;
     },
     // Fn upd bool state whether user requires deliver
     setDeliverMethod: (state, action) => {
       state.cartOrderInfo.isPickUp = action.payload;
       localStorage.setItem("cart", JSON.stringify(state));
+      return state;
     },
   },
 });

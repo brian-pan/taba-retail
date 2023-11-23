@@ -44,7 +44,9 @@ const CheckoutScreen: React.FunctionComponent<CheckoutScreenProps> = () => {
             Deliver
           </button>
         </div>
+        <br />
         {!isPickUp && <ShippingForm />}
+        <br />
         <UserInfoForm />
       </div>
       <div className="checkout-screen__cta-wrapper">
