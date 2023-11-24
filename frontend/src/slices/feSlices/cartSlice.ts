@@ -13,7 +13,7 @@ const initialState = localStorage.getItem("cart")
         isPickUp: true,
         shippingAddress: {},
         personalInfo: {},
-        paymentMethod: "PayPal",
+        paymentMethod: "card",
       },
     };
 
