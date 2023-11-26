@@ -90,6 +90,11 @@ const cartSlice = createSlice({
       localStorage.setItem("cart", JSON.stringify(state));
       return state;
     },
+    // Fn clear all cart items after submit order
+    clearCartItems: (state, action) => {
+      state.cartItems = [];
+      return state;
+    },
   },
 });
 
