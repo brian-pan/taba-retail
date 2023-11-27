@@ -34,11 +34,13 @@ const PlaceOrderScreen: React.FunctionComponent<PlaceOrderScreenProps> = (
 
   return (
     <div className="place-order-screen-wrapper">
-      <div>
-        <div>
-          <h2>Shipping</h2>
-          <p>
-            <span>Address: </span>
+      <div className="place-order-screen__info">
+        <div className="place-order-screen__shipping-wrapper">
+          <h2 className="place-order-screen__shipping-heading">Shipping</h2>
+          <p className="place-order-screen__shipping-content">
+            <span className="place-order-screen__shipping-content-span">
+              Address:{" "}
+            </span>
             {shippingAddress.address}, {shippingAddress.area},{" "}
             {shippingAddress.province} {shippingAddress.postalCode}
           </p>
@@ -72,7 +74,7 @@ const PlaceOrderScreen: React.FunctionComponent<PlaceOrderScreenProps> = (
           )}
         </div>
       </div>
-      <div>
+      <div className="place-order-screen__summary">
         <div>
           <h2>Order Summary</h2>
           <div>
