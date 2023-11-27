@@ -71,6 +71,8 @@ const PlaceOrderScreen: React.FunctionComponent<PlaceOrderScreenProps> = (
             </>
           )}
         </div>
+      </div>
+      <div>
         <div>
           <h2>Order Summary</h2>
           <div>
@@ -103,7 +105,6 @@ const PlaceOrderScreen: React.FunctionComponent<PlaceOrderScreenProps> = (
           </div>
         </div>
       </div>
-      <div></div>
     </div>
   );
 };
