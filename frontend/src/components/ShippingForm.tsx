@@ -21,7 +21,9 @@ const ShippingForm: React.FunctionComponent<ShippingFormProps> = () => {
   const dispatch = useDispatch();
 
   const handleOnChange = () => {
-    dispatch(saveShippingAddress({ address, postalCode, area }));
+    dispatch(
+      saveShippingAddress({ address, postalCode, area, province: "QC" })
+    );
   };
 
   useEffect(() => {

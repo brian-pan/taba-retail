@@ -106,6 +106,7 @@ export const {
   savePersonalInfo,
   setDeliverMethod,
   savePaymentMethod,
+  clearCartItems,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;
